@@ -35868,6 +35868,7 @@ body.iframe-mode-fullscreen .content-wrapper.iframe-mode {
   height: calc(100% - ((2 * 15px) + (1.8rem * 1.2)));
 }
 
+
 .content-wrapper.kanban .card .card-body {
   padding: .5rem;
 }

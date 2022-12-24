@@ -97,7 +97,7 @@
 
               <!--Registrar Pedidos-->
               <li class="nav-item">
-                <a href="{{route('pedidos.create')}}" class="nav-link active">
+                <a href="{{route('registrar')}}" class="nav-link active">
                   <i class="nav-icon fas fa-marker"></i>
                   <p>
                     Registrar Pedido
@@ -107,9 +107,9 @@
                <!--Registrar Pedidos-->
                <li class="nav-item">
                 <a href="{{route('pedidos.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-marker"></i>
+                  <i class="nav-icon fas fa-clipboard-list"></i>
                   <p>
-                    Registro de Pedidos
+                    Mantenedor Pedidos
                   </p>
                 </a>
               </li>      
@@ -255,7 +255,7 @@
     
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content p-2">
     @yield('content')
 
      
@@ -265,7 +265,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+  <footer class="main-footer d-none">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0
     </div>

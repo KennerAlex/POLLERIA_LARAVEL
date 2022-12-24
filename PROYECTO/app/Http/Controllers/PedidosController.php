@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\pedidos;
 use App\Models\Menu;
+use App\Models\detallePedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -58,13 +59,15 @@ class PedidosController extends Controller
     {
         //
         $menus=menu::all();
-        return view('pedidos.registrar',compact('menus'));
+
+        return view('pedidos.registrar',compact('menus',));
     }
-    public function registro($id)
+    public function registro()
     {
         //
-        $plato=menu::find($id);
-        return view('pedidos.create',compact('plato'));
+        
+        $platos=menu::all();
+        return view('pedidos.create',compact('platos'));
 
     }
 
@@ -78,18 +81,29 @@ class PedidosController extends Controller
     {
         //
         // dd($request);
-        $plato=new pedidos();
-
-        $plato->idmenu=$request->idmenu;
-        $plato->nombreCliente=$request->txtNombrecliente;
-        $plato->apellidosCliente=$request->txtApellidocliente;
-        $plato->correo=$request->txtCorreo;
-        $plato->telefono=$request->txtTelefono;
-        $plato->direccion=$request->txtDireccion;
-        $plato->cantidad=$request->txtCantidad;
-        $plato->descripcion=$request->txtDescripcion;
-        $plato->costo=$request->txtCosto;
-        $plato->save();
+        $pedido=new pedidos();
+        $pedido->idmenu=$request->idmenu;
+        $pedido->nombreCliente=$request->nombre;
+        $pedido->apellidosCliente=$request->apellidos;
+        $pedido->correo=$request->email;
+        $pedido->telefono=$request->telefono;
+        $pedido->direccion=$request->direccion;
+        $pedido->cantidad=$request->txtCantidad;
+        $pedido->descripcion=$request->notas;
+        $arrDetalle = json_decode($request->detalle, true);
+        $pedido->costo=$request->total;
+        $pedido->save();
+        foreach ($arrDetalle as $detalle) {
+            $tempDetalle = new detallePedido();
+            $tempDetalle->idPedido = $pedido->id;
+            $tempDetalle->idMenu = $detalle["idProducto"];
+            $tempDetalle->cantidad = $detalle["cantidad"];
+            $tempDetalle->precio = $detalle["precio"];
+            $tempDetalle->eliminado = 0;
+            if($tempDetalle->cantidad!=0){
+                $tempDetalle->save();
+            }
+        }
         return redirect('pedidos');
     }
 

@@ -38,7 +38,7 @@ Route::resource('especiales',PlatosEspecialesController::class);
 Route::resource('bebidas', BebidasController::class);
 Route::resource('menu', MenuController::class);
 Route::resource('pedidos', PedidosController::class);
-Route::get('registro/{id}',[PedidosController::class,'registro'] )->name('registrar');
+Route::get('registro/',[PedidosController::class,'registro'] )->name('registrar');
 Route::get('pdf/{id}',[PedidosController::class,'viewpdf'] )->name('pdf');
 Route::get('/estadisticas',[PedidosController::class,'estadisticas'])->name('estadisticas');
 
