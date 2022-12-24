@@ -17,10 +17,10 @@ class UserController extends Controller
     public function verificalogin(Request $request){
         //return dd($request->all()); ver los valores enviados
         $credentials =$request->validate([
-            'name'=>'required|string', 
+            'username'=>'required|string', 
             'password'=>'required|string'
         ],[
-            'name.required'=>'Ingrese el usuario',
+            'username.required'=>'Ingrese el usuario',
             'password'=>'Ingrese la contraseña'
         ]);
             if(Auth::attempt($credentials)){
@@ -28,7 +28,7 @@ class UserController extends Controller
                 return redirect()->intended('bienvenido')->with('status','Sesión correcta');
             }
             throw ValidationException::withMessages([
-                'name'=>'Usuario no encontrado',
+                'username'=>'Usuario no encontrado',
                 'password'=>'Contraseña incorrecta'
             ]);
             

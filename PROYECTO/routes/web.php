@@ -4,7 +4,9 @@ use App\Http\Controllers\BebidasController;
 use App\Http\Controllers\PlatosEspecialesController;
 use App\Http\Controllers\PolloBrasaController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\polloBrasa;
@@ -33,14 +35,12 @@ Route::view('bienvenido','bienvenido')->middleware('auth');
 Route::post('identificacion',[UserController::class,'verificalogin'])->name('identificacion');
 Route::post('/logout',[UserController::class,'salir'])->name('logout');
 
-Route::resource('polloBrasa', PolloBrasaController::class);
-Route::resource('especiales',PlatosEspecialesController::class);
-Route::resource('bebidas', BebidasController::class);
-Route::resource('menu', MenuController::class);
-Route::resource('pedidos', PedidosController::class);
-Route::get('registro/',[PedidosController::class,'registro'] )->name('registrar');
-Route::get('pdf/{id}',[PedidosController::class,'viewpdf'] )->name('pdf');
-Route::get('/estadisticas',[PedidosController::class,'estadisticas'])->name('estadisticas');
+Route::resource('menu', PlatoController::class);
+Route::resource('pedidos', PedidoController::class);
+Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
+Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');
+Route::get('pdf/{id}',[PedidoController::class,'viewpdf'] )->name('pdf');
+Route::get('/estadisticas',[PedidoController::class,'estadisticas'])->name('estadisticas');
 
 
 // LOGIN

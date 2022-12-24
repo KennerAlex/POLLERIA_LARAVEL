@@ -19,7 +19,7 @@
                     <h2 class="title">Iniciar Sesión</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" class="form-control @error('usuario') is-invalid @enderror" id="name" name="name" value="admin" required autofocus placeholder="Usuario">
+                        <input type="text" class="form-control @error('usuario') is-invalid @enderror" id="name" name="username" value="admin" required autofocus placeholder="Usuario">
                         @error('name')
                         <span class="invalid-feedback " role="alert">
                             {{$message}}
@@ -28,7 +28,7 @@
                     </div><br>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" class="form-control @error('contraseña') is-invalid @enderror" value="password" id="password" name="password"  placeholder="Contraseña">
+                        <input type="password" class="form-control @error('contraseña') is-invalid @enderror" value="123456" id="password" name="password"  placeholder="Contraseña">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                             {{$message}}

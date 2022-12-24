@@ -81,8 +81,16 @@
                                 <textarea class="form-control" name="notas" id="txtNotas" cols="10" rows="5"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                              <label for="">Total:</label>
-                              <input type="number" readonly class="form-control" name="total" id="txtTotal"></input>
+                                <div class="row">
+                                    <div class="col-6 pl-3">
+                                        <label class="" for="chkDelivery">Delivery: &nbsp;</label>
+                                        <input type="checkbox" class="" name="delivery" id="chkDelivery">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="">Total:</label>
+                                        <input style="border:none; background:none; text-align: right;" type="number" readonly name="total" id="txtTotal"></input>
+                                    </div>
+                                </div>
                           </div>
                             <input hidden type="text" id="txtDetalle" name="detalle">
                         </div>

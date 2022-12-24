@@ -2,32 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetallePedido;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UsuarioController extends Controller
+class DetallePedidoController extends Controller
 {
-   
-    // public function showlogin(){
-    //     return view('login.iniciar');
-    // }
-    // public function verificalogin(Request $request){
-    //     //return dd($request->all()); ver los valores enviados
-    //     $data=request()->validate([
-    //         'nombre'=>'required',
-    //         'contraseña'=>'required'
-    //     ],[
-    //         'nombre.required'=>'Ingrese Usuario',
-    //         'contraseña.required'=>'Ingrese Contraseña',
-    //     ]);
-    //     if(Auth::attempt($data)){
-    //         $con='OK';
-    //     }
-        
-        
-    // }
-   
-   
     /**
      * Display a listing of the resource.
      *
@@ -62,10 +41,10 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DetallePedido $detallePedido)
     {
         //
     }
@@ -73,10 +52,10 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DetallePedido $detallePedido)
     {
         //
     }
@@ -85,10 +64,10 @@ class UsuarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DetallePedido $detallePedido)
     {
         //
     }
@@ -96,10 +75,10 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DetallePedido $detallePedido)
     {
         //
     }
