@@ -6,6 +6,7 @@ use App\Http\Controllers\PolloBrasaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\TipoPlatoController;
+use App\Http\Controllers\TrabajadoresController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\polloBrasa;
@@ -43,6 +44,7 @@ Route::get('registro/{id}',[PedidosController::class,'registro'] )->name('regist
 Route::get('pdf/{id}',[PedidosController::class,'viewpdf'] )->name('pdf');
 Route::get('/estadisticas',[PedidosController::class,'estadisticas'])->name('estadisticas');
 Route::resource('tipoplato', TipoPlatoController::class);
+Route::resource('trabajadores',TrabajadoresController::class);
 
 
 // LOGIN

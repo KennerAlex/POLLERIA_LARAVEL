@@ -22,7 +22,7 @@
                             <textarea  class="form-control" id="descripcion" name="descripcion" rows="5" cols="80" required>{{ $tipoplato->descripcion }}</textarea>
                           </div>
                           <div class="form-group">
-                            <label for="estatus">Estatus</label>
+                            <label for="estatus">Estado</label>
                             <select class="form-control" id="activo" name="activo" required>
                             <option value="">Seleccionar</option>
                             <option value="1" <?php if($tipoplato->activo==1){ echo "selected";} ?>>Activo</option>

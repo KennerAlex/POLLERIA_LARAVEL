@@ -90,6 +90,31 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+                      <!-- Platos-->
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="fa-solid fa-person-chalkboard"></i>
+              <p>
+                Usuarios/Roles
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/polloBrasa" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/especiales" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Roles</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
         
                <li class="nav-item">
                 <a href="/menu" class="nav-link active">
@@ -117,11 +142,20 @@
                     Registro de Pedidos
                   </p>
                 </a>
-              </li>      
+              </li> 
+               <!-- Estadisticas-->
+            <li class="nav-item">
+              <a href="{{route('estadisticas')}}" class="nav-link active">
+                <i class="fas fa-chart-bar"></i>
+                <p>
+                  Estadisticas
+                </p>
+              </a>
+            </li>     
 
        <!-- Platos-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-utensils"></i>
               <p>
                 Platos
@@ -150,65 +184,39 @@
               </li>
             </ul>
           </li>
-             <!-- Usuarios-->
-             {{-- <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                  Usuarios
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="/" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Clientes</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="/" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Administradores</p>
-                  </a>
-                </li>
-              
-                <li class="nav-item">
-                  <a href="/" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Chef & Cocineros</p>
-                  </a>
-                </li>
 
-                <li class="nav-item">
-                  <a href="/" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Meseros</p>
-                  </a>
-                </li>
-              </ul>
-            </li> --}}
+          <!-- REGISTROS Y MANTENEDIRES-->
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="fa-solid fa-folder-open" style="padding-left: 5px"></i>
+              <p>
+                Registros
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('tipoplato.index')}}" class="nav-link ">
+                  <i class="fa-solid fa-bowl-rice"></i>
+                  <p>
+                    Matenedor Tipo Plato
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('trabajadores.index')}}" class="nav-link ">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <p>
+                    Registro Trabajadores
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </li>
             
-            <!-- Estadisticas-->
-            <li class="nav-item">
-              <a href="{{route('estadisticas')}}" class="nav-link active">
-                <i class="fas fa-chart-bar"></i>
-                <p>
-                  Estadisticas
-                </p>
-              </a>
-            </li>
 
 
 
-            <li class="nav-item">
-              <a href="{{route('tipoplato.index')}}" class="nav-link active">
-                <i class="fa-solid fa-bowl-rice"></i>
-                <p>
-                  Matenedor Tipo Plato
-                </p>
-              </a>
-            </li>
 
             <!-- Logout-->
             <li class="nav-item">
