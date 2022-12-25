@@ -15,3 +15,4 @@ class TipoPlato extends Model
         return $this->hasMany(Plato::class);
     }
 }
+ 

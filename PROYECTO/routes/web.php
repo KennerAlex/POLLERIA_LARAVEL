@@ -1,15 +1,10 @@
 <?php
 
-use App\Http\Controllers\BebidasController;
-use App\Http\Controllers\PlatosEspecialesController;
-use App\Http\Controllers\PolloBrasaController;
-use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PedidoController;
-use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\PlatoController;
+use App\Http\Controllers\TipoPlatoController;
+use App\Http\Controllers\TrabajadoresController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UsuarioController;
-use App\Models\polloBrasa;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +36,8 @@ Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
 Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');
 Route::get('pdf/{id}',[PedidoController::class,'viewpdf'] )->name('pdf');
 Route::get('/estadisticas',[PedidoController::class,'estadisticas'])->name('estadisticas');
+Route::resource('tipoplato', TipoPlatoController::class);
+Route::resource('trabajadores',TrabajadoresController::class);
 
 
 // LOGIN
