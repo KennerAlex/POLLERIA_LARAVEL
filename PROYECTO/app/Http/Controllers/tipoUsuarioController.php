@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\tipoUsuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class tipoUsuarioController extends Controller
 {
@@ -15,7 +16,7 @@ class tipoUsuarioController extends Controller
     public function index()
     {
         //
-        $roles=tipoUsuario::all();
+        $roles = DB::select('SELECT * FROM tipoUsuario WHERE eliminado = 0');
         return view('usuarios.roles.index',compact('roles'));
     }
 
@@ -41,6 +42,7 @@ class tipoUsuarioController extends Controller
         //
         $rol=new tipoUsuario();
         $rol->tipo=$request->txtRol;
+        $rol->activo=$request->estado;
         $rol->save();
         return redirect('tipoUsuario');
     }
@@ -65,8 +67,8 @@ class tipoUsuarioController extends Controller
     public function edit($id)
     {
         //
-        $rol=tipoUsuario::find($id);
-        return view('usuarios.roles.edit',compact('rol'));
+        $roles=tipoUsuario::find($id);
+        return view('usuarios.roles.edit',compact('roles'));
     }
 
     /**
@@ -81,6 +83,7 @@ class tipoUsuarioController extends Controller
         //
         $rol=tipoUsuario::find($id);
         $rol->tipo=$request->txtRol;
+        $rol->activo=$request->estado;
         $rol->update();
         return redirect('tipoUsuario');
     }
@@ -96,9 +99,11 @@ class tipoUsuarioController extends Controller
         //
         $rol=tipoUsuario::find($id);
         $rol->activo=0;
+        $rol->eliminado= 1;
         $rol->update();
 
         //tipoUsuario::find($id)->delete();
-        return redirect()->route('tipoUsuario.index');
+        return back()->with('Borrado', 'El rol se eliminó correctamente');
+        //return redirect()->route('tipoUsuario.index');
     }
 }

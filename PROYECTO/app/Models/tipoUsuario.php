@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class tipoUsuario extends Model
 {
-    protected $fillable=['tipo'];
+    
     public $table='tipousuario';
+    protected $fillable=['tipo', 'activo', 'eliminado'];
     public $timestamps=false;
     use HasFactory;
 }

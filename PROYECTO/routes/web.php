@@ -5,6 +5,7 @@ use App\Http\Controllers\PlatosEspecialesController;
 use App\Http\Controllers\PolloBrasaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\tipoUsuarioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\polloBrasa;
@@ -33,6 +34,7 @@ Route::view('bienvenido','bienvenido')->middleware('auth');
 Route::post('identificacion',[UserController::class,'verificalogin'])->name('identificacion');
 Route::post('/logout',[UserController::class,'salir'])->name('logout');
 
+Route::resource('tipoUsuario', tipoUsuarioController::class);
 Route::resource('polloBrasa', PolloBrasaController::class);
 Route::resource('especiales',PlatosEspecialesController::class);
 Route::resource('bebidas', BebidasController::class);
