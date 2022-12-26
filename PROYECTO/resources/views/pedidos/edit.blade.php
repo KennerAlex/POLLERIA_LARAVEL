@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="card-body h-100">
-            <form id="formPedido" class="was-validated form h-100" action=" {{ route('pedidos.store') }} " method="POST">
+            <form id="formPedido" class="was-validated form h-100" action=" {{ route('pedidos.update',$pedido) }} " method="POST">
                 @csrf
                 <div class="row h-100">
                     <div class="col-7 border h-100" style="border-radius: 5px">
@@ -33,7 +33,7 @@
                                                         style="flex-shrink: 1; font-size: 1.4em; cursor: pointer; user-select: none;"> - </div>
                                                     <div class="bg-secondary text-center d-flex"
                                                         style="flex-grow: 1; align-items:center; justify-content:center">
-                                                        <span class="amount-counter m-auto" data-max="{{ $item->stockDiario }}" data-idProducto="{{ $item->id }}" data-precio={{ $item->precio }} style="user-select: none;">0</span>
+                                                        <span class="amount-counter m-auto" data-max="{{ $item->stockDiario }}" data-idProducto="{{ $item->id }}" data-precio={{ $item->precio }} style="user-select: none;">{{ $item->cantidad }}</span>
                                                     </div>
                                                     <div data-sign="1"
                                                         class="bg-success px-3 amount-controller amount-controller-plus"
@@ -57,38 +57,40 @@
                         <div class="row">
                             <div class="col-6 form-group">
                                 <label for="">Nombre del Cliente</label>
-                                <input name="nombre" id="txtNombre" class="form-control" type="text" required />
+                                <input name="nombre" id="txtNombre" class="form-control" type="text" required value="{{ $pedido->nombreCliente }}" />
                             </div>
                             <div class="col-6 form-group">
                                 <label for="">Apellido del Cliente</label>
-                                <input name="apellidos" id="txtApellidos" class="form-control" type="text" required />
+                                <input name="apellidos" id="txtApellidos" class="form-control" type="text" required value="{{ $pedido->apellidosCliente }}"/>
                             </div>
                             <div class="col-8 form-group">
                                 <label for="">Correo</label>
-                                <input name="email" id="txtEmail" class="form-control" type="email" name=""
+                                <input name="email" id="txtEmail" class="form-control" type="email" name="" value="{{ $pedido->correo }}"
                                     id="">
                             </div>
                             <div class="col-4 form-group">
                                 <label for="">Telefono</label>
-                                <input name="telefono" id="txtTelefono" class="form-control" type="text" required>
+                                <input name="telefono" id="txtTelefono" class="form-control" type="text" required value="{{ $pedido->celular }}">
                             </div>
                             <div class="col-12 form-group">
                                 <label for="">Dirección</label>
-                                <input name="direccion" id="txtDireccion" class="form-control" type="text" required>
+                                <input name="direccion" id="txtDireccion" class="form-control" type="text" required value="{{ $pedido->direccion }}">
                             </div>
                             <div class="col-12 form-group">
                                 <label for="">Notas:</label>
-                                <textarea class="form-control" name="notas" id="txtNotas" cols="10" rows="5"></textarea>
+                                <textarea class="form-control" name="notas" id="txtNotas" cols="10" rows="5">{{ $pedido->notas }}</textarea>
                             </div>
                             <div class="col-12 form-group">
                                 <div class="row">
                                     <div class="col-6 pl-3">
                                         <label class="" for="chkDelivery">Delivery: &nbsp;</label>
-                                        <input type="checkbox" class="" name="delivery" id="chkDelivery">
+                                        <input type="checkbox" class="" name="delivery" id="chkDelivery" @if ($pedido->delivery)
+                                            checked
+                                        @endif>
                                     </div>
                                     <div class="col-6">
                                         <label for="">Total:</label>
-                                        <input style="border:none; background:none; text-align: right;" type="number" readonly name="total" id="txtTotal"></input>
+                                        <input style="border:none; background:none; text-align: right;" type="number" readonly name="total" id="txtTotal" value="{{ $pedido->monto }}"></input>
                                     </div>
                                 </div>
                           </div>

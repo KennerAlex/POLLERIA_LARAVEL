@@ -7,7 +7,7 @@ use App\Http\Controllers\TrabajadoresController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\Route;
 use Illuminate\Validation\ValidationException;
 
 /*
@@ -30,7 +30,8 @@ Route::view('bienvenido','bienvenido')->middleware('auth');
 Route::post('identificacion',[UserController::class,'verificalogin'])->name('identificacion');
 Route::post('/logout',[UserController::class,'salir'])->name('logout');
 
-Route::resource('menu', PlatoController::class);
+Route::resource('platos', PlatoController::class);
+
 Route::resource('pedidos', PedidoController::class);
 Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
 Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');

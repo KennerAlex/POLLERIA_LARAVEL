@@ -45,8 +45,9 @@
                                             <td>
                                                 <div class="d-flex" style="gap: 12px; justify-content:center">
                                                     <div>
-                                                        <button onclick="showDetail(event)" type="button" class="btn btn-primary btn-sm border-dark"
-                                                            data-toggle="modal" data-target="#detailModal">
+                                                        <button onclick="showDetail(event)" type="button"
+                                                            class="btn btn-primary btn-sm border-dark" data-toggle="modal"
+                                                            data-target="#detailModal">
                                                             <i class="fas fa-list"></i> Ver</a>
                                                         </button>
                                                         <div class="d-none detail-capsule">
@@ -59,13 +60,17 @@
                                                                         <small>{{ $detalle->plato->descripcion }}</small>
                                                                     </div>
                                                                     <div>
-                                                                        <h6>{{ $detalle->precio }} x {{ $detalle->cantidad }} = {{ $detalle->precio* $detalle->cantidad }} </h6>
+                                                                        <h6>{{ $detalle->precio }} x
+                                                                            {{ $detalle->cantidad }} =
+                                                                            {{ $detalle->precio * $detalle->cantidad }} *-9
                                                                     </div>
                                                                 </div>
                                                             @endforeach
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <a href="{{ route('actualizar', $item) }}" type="button" class="btn btn-primary">Editar</a>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Regresar</button>
+                                                                <a href="{{ route('actualizar', $item) }}" type="button"
+                                                                    class="btn btn-primary">Editar</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,14 +123,14 @@
                 <div class="modal-body">
                     ...
                 </div>
-                
+
             </div>
         </div>
     </div>
 @endsection
 @section('script')
     <script>
-        function showDetail(ev){
+        function showDetail(ev) {
             cuerpoModal = document.querySelector('.modal-body');
             target = ev.target;
             test = target.closest('.detail-capsule');
