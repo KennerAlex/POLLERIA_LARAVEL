@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
+
 use App\Models\DetallePedido;
 use App\Models\Pedido;
 use App\Models\Plato;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+// use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
@@ -100,6 +104,16 @@ class PedidoController extends Controller
         return view('pedidos.edit',compact('platos','pedido'));
     }
 
+    public function createPDF(Pedido $pedido){
+        // return view('pedidos.pdf_view', compact('pedido'));
+        $orientation = 'landscape';
+        $customPaper = array(0,0,950,950);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf = PDF::loadview('pedidos.pdf_view',compact('pedido'))->setPaper('letter', $orientation);
+        $nombreArchivo = "V-".str_repeat('0',5 - strlen(''.$pedido->id) ).$pedido->id.'_'.now()->format('d-m-Y').'.pdf';
+        return $pdf->download($nombreArchivo);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -126,7 +140,7 @@ class PedidoController extends Controller
                 $tempDetalle->pedido_id	 = $pedido->id;
                 $tempDetalle->plato_id = $detalle["idProducto"];
                 $tempDetalle->cantidad = $detalle["cantidad"];
-                $tempDetalle->precio = $detalle["precio"];
+                $tempDetalle->precio = $detalle["precio"]*$detalle["cantidad"];
                 
                 if($tempDetalle->cantidad!=0){
                     $tempDetalle->save();
