@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \App\Models\tipousuario;
+use \App\Models\tipoUsuario;
 use \App\Models\Trabajador;
 use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Auth;
