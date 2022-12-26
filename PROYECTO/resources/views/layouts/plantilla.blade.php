@@ -92,6 +92,8 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                       <!-- Platos-->
+          @if(auth()->user()->idtipousuario == 1 || auth()->user()->idtipousuario == 4)
+
           @if(auth()->user()->idtipousuario == 1)
           <li class="nav-item">
             <a href="#" class="nav-link active">
@@ -116,7 +118,7 @@
               </li>
             </ul>
           </li>
-
+          @endif
         
                <li class="nav-item">
                 <a href="/menu" class="nav-link active">
@@ -194,7 +196,7 @@
             </ul>
           </li>
 
-          @elseif(auth()->user()->idtipousuario == 2)
+          @elseif(auth()->user()->idtipousuario == 2 || auth()->user()->idtipousuario == 3)
            <!--Registrar Pedidos-->
            <li class="nav-item">
             <a href="{{route('registrar')}}" class="nav-link active">
@@ -204,7 +206,16 @@
               </p>
             </a>
           </li>
-
+          <!--Registrar Pedidos-->
+          <li class="nav-item">
+            <a href="{{route('pedidos.index')}}" class="nav-link active">
+              <i class="nav-icon fas fa-clipboard-list"></i>
+              <p>
+                Mantenedor Pedidos
+              </p>
+            </a>
+          </li> 
+          
           @endif
           
             
@@ -275,11 +286,14 @@
 
     <!-- Main content -->
     <section class="content p-2">
-    @if(auth()->user()->idtipousuario==1)
-    @yield('content')
-    @yield('content2')
+    @if(auth()->user()->idtipousuario==1 || auth()->user()->idtipousuario==4)
+      @if(auth()->user()->idtipousuario==1)
+        @yield('content3')
+      @endif
+      @yield('content')
+      @yield('content2')
     @else
-    @yield('content2')
+      @yield('content2')
     @endif
      
 

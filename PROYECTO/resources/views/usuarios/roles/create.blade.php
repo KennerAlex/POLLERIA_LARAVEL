@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('content')
+@section('content3')
 <div style="" class="">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class=" height: 90vh; overflow:auto">

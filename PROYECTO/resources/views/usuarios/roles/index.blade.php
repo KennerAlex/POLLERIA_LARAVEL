@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('content')
+@section('content3')
 <div style="" class="">
   @if ($message = Session::get('Borrado'))
           <div class="col-12 alert alert-success alert-dismissable fade show" data-dismiss="alert" role="alert">
@@ -40,7 +40,7 @@
                                     <td> <?php if($rol->activo==1){ echo 'Activo';}else{ echo 'Inactivo';} ?> </td>
                                     <td class="project-actions text-center">
                                       <div class="row">
-                                        @if($rol->id != 1 && $rol->id !=2)
+                                        @if($rol->id != 1 && $rol->id !=2 && $rol->id !=3 && $rol->id !=4)
                                         <div class="col-sm-3">
                                           <a class="btn btn-warning btn-sm" href="{{ route('tipoUsuario.edit', $rol->id) }}">
                                             <i class="fas fa-pencil-alt">

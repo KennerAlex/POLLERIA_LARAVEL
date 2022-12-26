@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('content')
+@section('content3')
 <div style="" class="">
   @if ($message = Session::get('Borrado'))
           <div class="col-12 alert alert-success alert-dismissable fade show" data-dismiss="alert" role="alert">
