@@ -7,7 +7,7 @@
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
     <!-- Font Awesome -->
-  <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../adminlte/plugins/fontawesome-free/css/all.min.css">
 
 </head>
 <body>
@@ -85,8 +85,8 @@
                     <h3>¿Nuevo Aqui?</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequuntur blanditiis aliquid?</p>
                     <button class="btn transparent" id="sign-up-btn">Registrate!</button>
-                </div>
-                <img src="/adminlte/dist/img/logo_Polleria.png" alt="" class="image">
+                </div>mysql
+                <img src="../adminlte/dist/img/logo_Polleria.png" alt="" class="image">
             </div>
             <div class="panel right-panel">
                 <div class="content">
@@ -94,7 +94,7 @@
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequuntur blanditiis aliquid?</p>
                     <button class="btn transparent" id="sign-in-btn">Atras</button>
                 </div>
-                <img src="/adminlte/dist/img/logo_Polleria.png" alt="" class="image">
+                <img src="..../adminlte/dist/img/logo_Polleria.png" alt="" class="image">
             </div>
         </div>
     </div>  
