@@ -11,7 +11,7 @@ class Plato extends Model
     protected $guarded = [];
 
     public function tipoPlato(){
-        return $this->hasOne(TipoPlato::class);
+        return $this->belongsTo(TipoPlato::class);
     }
 
     public function pedidos(){

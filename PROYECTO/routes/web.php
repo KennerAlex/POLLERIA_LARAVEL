@@ -34,12 +34,15 @@ Route::get('/usuarios',[UserController::class,'index'])->name('usuarios');
 Route::post('usuarios',[UserController::class,'store'])->name('usuarios.store');
 Route::delete('usuarios/{id}',[UserController::class,'destroy'])->name('usuarios.destroy');
 
-Route::resource('menu', PlatoController::class);
+Route::resource('platos', PlatoController::class);
+Route::post('platos/menu', [PlatoController::class,'setMenu'])->name('setMenu');
+
 Route::resource('pedidos', PedidoController::class);
 Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
 Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');
 Route::get('pdf/{id}',[PedidoController::class,'viewpdf'] )->name('pdf');
 Route::get('/estadisticas',[PedidoController::class,'estadisticas'])->name('estadisticas');
+
 Route::resource('tipoplato', TipoPlatoController::class);
 Route::resource('trabajadores',TrabajadoresController::class);
 Route::resource('tipoUsuario', tipoUsuarioController::class);
