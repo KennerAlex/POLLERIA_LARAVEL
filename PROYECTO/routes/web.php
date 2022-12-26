@@ -45,6 +45,9 @@ Route::get('pedidos/pdf/{pedido}',[PedidoController::class,'createPDF'] )->name(
 
 Route::get('/estadisticas',[DashboardController::class,'index'])->name('estadisticas');
 Route::post('/estadisticas/vendidos',[DashboardController::class,'vendidos'])->name('vendidos');
+Route::post('/estadisticas/ingresos',[DashboardController::class,'ingresos'])->name('ingresos');
+Route::post('/estadisticas/delivery',[DashboardController::class,'delivery'])->name('delivery');
+Route::post('/estadisticas/stock',[DashboardController::class,'stock'])->name('stock');
 
 Route::resource('tipoplato', TipoPlatoController::class);
 Route::resource('trabajadores',TrabajadoresController::class);

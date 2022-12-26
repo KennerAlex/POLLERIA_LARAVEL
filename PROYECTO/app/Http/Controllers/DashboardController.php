@@ -39,5 +39,19 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+    public function ingresos(Request $request)
+    { 
+        $ingresos =DB ::select('SELECT SUM(monto) as ingresos, MONTH(created_at) as mes  FROM  pedidos' );
+        return response(json_encode($ingresos,200))->header('Content-type',"text/plain");
+    }
+    public function delivery(Request $request)
+    { 
+        $delivery =DB ::select('SELECT COUNT(*) as cantidad, delivery FROM  pedidos group by delivery order by delivery' );
+        return response(json_encode($delivery,200))->header('Content-type',"text/plain");
+    }
+    public function stock(Request $request)
+    {
+        $stock =DB ::select('SELECT nombre, stockDiario FROM  platos where stockDiario>0' );
+        return response(json_encode($stock,200))->header('Content-type',"text/plain");
+    }
 }
