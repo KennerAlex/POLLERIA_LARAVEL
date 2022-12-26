@@ -41,9 +41,17 @@
             </table>
         </div>
     </div>
-    <div style="width: 100%; padding: 10px 0px 3px 0px; align-items:center;">
+    <div style="margin: 22px 0px 18px 0px; width:100%; font-size: 24px;">
+        <div style="float:left">
+            <p style="margin:0">Trabajador: {{ $pedido->usuario->trabajador->nombre }} {{ $pedido->usuario->trabajador->apellidoPaterno }} {{ $pedido->usuario->trabajador->apellidoMaterno }}</p>
+        </div>
+        <div style="margin-left:auto">
+            <p style="text-align:right;margin:0">Fecha: {{ (explode(" ", $pedido->created_at))[0] }}</p>
+        </div>
+    </div>
+    <div style="width: 100%; padding: 4px 0px 3px 0px; align-items:center;">
         <div style="float: left;padding: 0px 22px 0px 0px">
-            <table style="width:100%; font-size: 20px;">
+            <table style="width:100%; font-size: 24px;">
                 <tr>
                     <td >Cliente: </td>
                     <td style="border-bottom: solid 1px black; padding-left: 1ch">{{ $pedido->nombreCliente }}
@@ -81,7 +89,7 @@
             </table>
         </div>
     </div>
-    <div style="padding: 12px 22px">
+    <div style="padding: 20px 8px 0px 8px">
         <table
             style="width:100%;border: 1px solid black; border-radius:10px; font-size:22px; border-spacing: 0; overflow:hidden">
             <thead>

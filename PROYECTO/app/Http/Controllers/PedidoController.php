@@ -32,7 +32,7 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        $platos = Plato::where('eliminado',0)->where('activo',1)->where('stockDiario','>',0)->get();
+        $platos = Plato::where('eliminado',0)->where('activo',1)->get();
         return view('pedidos.create',compact('platos'));
     }
 
@@ -62,10 +62,12 @@ class PedidoController extends Controller
             $tempDetalle->plato_id = $detalle["idProducto"];
             $tempDetalle->cantidad = $detalle["cantidad"];
             $tempDetalle->precio = $detalle["precio"];
-            
+            $plato = Plato::find($tempDetalle->plato_id);
+            $plato->stockDiario = $plato->stockDiario - $tempDetalle->cantidad;
             if($tempDetalle->cantidad!=0){
                 $tempDetalle->save();
             }
+            $plato->update();
         }
         return redirect('pedidos');
     }
@@ -142,9 +144,13 @@ class PedidoController extends Controller
                 $tempDetalle->cantidad = $detalle["cantidad"];
                 $tempDetalle->precio = $detalle["precio"]*$detalle["cantidad"];
                 
+                $plato = Plato::find($tempDetalle->plato_id);
+                $plato->stockDiario = $plato->stockDiario - $tempDetalle->cantidad;
+
                 if($tempDetalle->cantidad!=0){
                     $tempDetalle->save();
                 }
+                $plato->update();
             }else{
                 $tempDetalle = DetallePedido::find($detalle['idDetalle']);
                 if($detalle["cantidad"]==0){
@@ -154,8 +160,11 @@ class PedidoController extends Controller
                     $tempDetalle->activo = 1;
                     $tempDetalle->eliminado = 0;
                 }
+                $plato = Plato::find($tempDetalle->plato_id);
+                $plato->stockDiario = $plato->stockDiario - ($detalle["cantidad"] - $tempDetalle->cantidad);
                 $tempDetalle->cantidad = $detalle["cantidad"];
                 $tempDetalle->update();
+                $plato->update();
             }
         }
         return redirect('pedidos');

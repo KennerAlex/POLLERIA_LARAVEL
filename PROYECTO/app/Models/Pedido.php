@@ -15,7 +15,7 @@ class Pedido extends Model
         return $this->hasMany(DetallePedido::class);
     }
 
-    public function vendedor(){
-        return $this->hasOne(User::class);
+    public function usuario(){
+        return $this->belongsTo(User::class,'user_id','id');
     }
 }

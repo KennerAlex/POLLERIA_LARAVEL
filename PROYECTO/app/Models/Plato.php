@@ -14,7 +14,7 @@ class Plato extends Model
         return $this->belongsTo(TipoPlato::class);
     }
 
-    public function pedidos(){
-        return $this->hasMany(Pedido::class,'plato_id','id');
+    public function detallePedido(){
+        return $this->hasMany(DetallePedido::class,'plato_id','id');
     }
 }
