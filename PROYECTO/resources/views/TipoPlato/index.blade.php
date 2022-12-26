@@ -2,11 +2,14 @@
 @section('content')
 <div style="" class="">
   @if ($message = Session::get('Borrado'))
-          <div class="col-12 alert-success alert-dismissable fade show" role="alert">
-            <h5>Mensaje:</h5>
-            <span>{{$message}}</span>
-          </div>
-  @endif
+  <div class="col-12 alert alert-success alert-dismissable fade show" data-dismiss="alert" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h5>Mensaje:</h5>
+    <span>{{$message}}</span>
+  </div>
+@endif
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class=" overflow-hidden shadow-xl sm:rounded-lg">
           <div class="container">
@@ -23,8 +26,8 @@
                               <thead>
                                 <tr>
                                   <th>Id</th>
-                                  <th>Nombre</th>
                                   <th>Descripcion</th>
+                                  <th>Estado</th>
                                   <th style="">Acciones</th>
                                 </tr>
                               </thead>
@@ -32,8 +35,8 @@
                                 <?php foreach ($tipos as $tipo) { ?>
                                     <tr>
                                       <td><?php echo $tipo->id; ?></td>
-                                      <td><?php echo $tipo->nombre; ?></td>
                                       <td><?php echo $tipo->descripcion; ?></td>
+                                      <td> <?php if($tipo->activo==1){ echo 'Activo';}else{ echo 'Inactivo';} ?> </td>
                                       <td class="project-actions text-center">
                                         <a class="btn btn-primary btn-sm" href="#">
                                           <i class="fas fa-eye"></i>
