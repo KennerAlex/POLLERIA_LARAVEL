@@ -42,7 +42,7 @@ class DashboardController extends Controller
      */
     public function ingresos(Request $request)
     { 
-        $ingresos =DB ::select('SELECT SUM(monto) as ingresos, MONTH(created_at) as mes  FROM  pedidos' );
+        $ingresos =DB ::select("SELECT SUM(monto) as ingresos, case when month(created_at)=1 then 'Enero' when month(created_at)=2 then 'Febrero' when month(created_at)=3 then 'Marzo' when month(created_at)=4 then 'Abril' when month(created_at)=5 then 'Mayo' when month(created_at)=6 then 'Junio' when month(created_at)=7 then 'Julio'when month(created_at)=8 then 'Agosto' when month(created_at)=9 then 'Setiembre' when month(created_at)=10 then 'Octubre' when month(created_at)=11 then 'Noviembre' when month(created_at)=12 then 'Diciembre' end as mes  FROM  pedidos group by mes;");
         return response(json_encode($ingresos,200))->header('Content-type',"text/plain");
     }
     public function delivery(Request $request)
