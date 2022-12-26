@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <title>DashBoard:Polleria </title>
-  <link rel="shortcut icon" href="/adminlte/dist/img/logo_Polleria.png">
+  <link rel="shortcut icon" href="adminlte/dist/img/logo_Polleria.png">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -13,13 +13,13 @@
     @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,500;1,600&display=swap');
   </style>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="adminlte/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!--ribbon -->
-  <link rel="stylesheet" href="/adminlte/dist/css/estilos.css">
+  <link rel="stylesheet" href="{{asset('adminlte/dist/css/estilos.css')}}">
   <link rel="stylesheet" href="{{asset('css/platos.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{asset('adminlte/dist/css/adminlte.min.css')}}">
   
 </head>
 <body class="hold-transition sidebar-mini">
@@ -57,7 +57,7 @@
   <aside class="main-sidebar sidebar-light-warning bg-warning elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link  align-items-center">
-      <img src="/adminlte/dist/img/logo_Polleria.png" alt="" class=" img" style="width: 100%; height: 70%;"><br>
+      <img src="../adminlte/dist/img/logo_Polleria.png" alt="" class=" img" style="width: 100%; height: 70%;"><br>
       <span class="  font-weight-light">Polleria "El Rico Dí"</span>
     </a>
 
@@ -66,7 +66,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ session('rol')->tipo }} </a>
@@ -311,13 +311,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="/adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/adminlte/dist/js/adminlte.min.js"></script>
+<script src="adminlte/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/adminlte/dist/js/demo.js"></script>
+<script src="adminlte/dist/js/demo.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
