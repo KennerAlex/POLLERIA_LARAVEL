@@ -87,10 +87,12 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
+        
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                       <!-- Platos-->
+          @if(auth()->user()->idtipousuario == 1)
           <li class="nav-item">
             <a href="#" class="nav-link active">
               <i class="fa-solid fa-person-chalkboard"></i>
@@ -213,6 +215,20 @@
               </li>
             </ul>
           </li>
+
+          @elseif(auth()->user()->idtipousuario == 2)
+           <!--Registrar Pedidos-->
+           <li class="nav-item">
+            <a href="{{route('registrar')}}" class="nav-link active">
+              <i class="nav-icon fas fa-marker"></i>
+              <p>
+                Registrar Pedido
+              </p>
+            </a>
+          </li>
+
+          @endif
+          
             
 
 
@@ -281,8 +297,12 @@
 
     <!-- Main content -->
     <section class="content p-2">
+    @if(auth()->user()->idtipousuario==1)
     @yield('content')
-
+    @yield('content2')
+    @else
+    @yield('content2')
+    @endif
      
 
     </section>

@@ -40,7 +40,7 @@
                                     <td> <?php if($rol->activo==1){ echo 'Activo';}else{ echo 'Inactivo';} ?> </td>
                                     <td class="project-actions text-center">
                                       <div class="row">
-                                        @if($rol->id != 1)
+                                        @if($rol->id != 1 && $rol->id !=2)
                                         <div class="col-sm-3">
                                           <a class="btn btn-warning btn-sm" href="{{ route('tipoUsuario.edit', $rol->id) }}">
                                             <i class="fas fa-pencil-alt">

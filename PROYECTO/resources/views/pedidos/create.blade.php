@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('content')
+@section('content2')
     <div class="card h-100">
         <div class="card-header pt-2">
             <div class="card-title">
