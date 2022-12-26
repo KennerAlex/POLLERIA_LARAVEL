@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use \App\Models\Plato;
-use \App\Models\TipoPlato;
+use \App\Models\tipoPlato;
 use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\App;
 

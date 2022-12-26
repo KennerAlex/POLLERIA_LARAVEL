@@ -85,7 +85,7 @@
                     <h3>¿Nuevo Aqui?</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum consequuntur blanditiis aliquid?</p>
                     <button class="btn transparent" id="sign-up-btn">Registrate!</button>
-                </div>mysql
+                </div>
                 <img src="../adminlte/dist/img/logo_Polleria.png" alt="" class="image">
             </div>
             <div class="panel right-panel">
