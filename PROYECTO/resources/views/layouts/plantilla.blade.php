@@ -155,34 +155,12 @@
 
        <!-- Platos-->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{route('platos.index')}}" class="nav-link active">
               <i class="nav-icon fas fa-utensils"></i>
               <p>
                 Platos
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/polloBrasa" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pollo a la Brasa</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/especiales" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Platos Especiales</p>
-                </a>
-              </li>
-            
-              <li class="nav-item">
-                <a href="/bebidas" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bebidas</p>
-                </a>
-              </li>
-            </ul>
           </li>
 
           <!-- REGISTROS Y MANTENEDIRES-->

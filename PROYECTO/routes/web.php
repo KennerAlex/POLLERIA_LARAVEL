@@ -8,7 +8,7 @@ use App\Http\Controllers\TrabajadoresController;
 use App\Http\Controllers\UserController;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 
 /*
@@ -32,12 +32,14 @@ Route::post('identificacion',[UserController::class,'verificalogin'])->name('ide
 Route::post('/logout',[UserController::class,'salir'])->name('logout');
 
 Route::resource('platos', PlatoController::class);
+Route::post('platos/menu', [PlatoController::class,'setMenu'])->name('setMenu');
 
 Route::resource('pedidos', PedidoController::class);
 Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
 Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');
 Route::get('pdf/{id}',[PedidoController::class,'viewpdf'] )->name('pdf');
 Route::get('/estadisticas',[PedidoController::class,'estadisticas'])->name('estadisticas');
+
 Route::resource('tipoplato', TipoPlatoController::class);
 Route::resource('trabajadores',TrabajadoresController::class);
 Route::resource('tipoUsuario', tipoUsuarioController::class);

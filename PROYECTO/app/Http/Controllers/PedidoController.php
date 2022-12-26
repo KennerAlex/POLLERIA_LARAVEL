@@ -17,7 +17,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::all();
+        $pedidos = Pedido::where('eliminado',0)->get();
         return view('pedidos.index',compact('pedidos'));
     }
 
@@ -28,7 +28,7 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        $platos = Plato::where('activo',1)->where('stockDiario','>',0)->get();
+        $platos = Plato::where('eliminado',0)->where('activo',1)->where('stockDiario','>',0)->get();
         return view('pedidos.create',compact('platos'));
     }
 
@@ -85,13 +85,15 @@ class PedidoController extends Controller
      */
     public function edit(Pedido $pedido)
     {
-        $platos = Plato::where('activo',1)->where('stockDiario','>',0)->get();
+        $platos = Plato::where('eliminado',0)->where('activo',1)->where('stockDiario','>',0)->get();
 
         foreach ($platos as $plato) {
             $plato->cantidad = 0;
+            $plato->idDetalle = 0;
             foreach($pedido->detalle as $detalle){
                 if($detalle->plato_id == $plato->id){
                     $plato->cantidad = $detalle->cantidad;
+                    $plato->idDetalle = $detalle->id;
                 }
             }
         }
@@ -117,16 +119,29 @@ class PedidoController extends Controller
         $pedido->monto=$request->total;
         $pedido->user_id = auth()->id();
         $arrDetalle = json_decode($request->detalle, true);
-        $pedido->save();
+        $pedido->update();
         foreach ($arrDetalle as $detalle) {
-            $tempDetalle = new DetallePedido();
-            $tempDetalle->pedido_id	 = $pedido->id;
-            $tempDetalle->plato_id = $detalle["idProducto"];
-            $tempDetalle->cantidad = $detalle["cantidad"];
-            $tempDetalle->precio = $detalle["precio"];
-            
-            if($tempDetalle->cantidad!=0){
-                $tempDetalle->save();
+            if($detalle['idDetalle']==0){
+                $tempDetalle = new DetallePedido();
+                $tempDetalle->pedido_id	 = $pedido->id;
+                $tempDetalle->plato_id = $detalle["idProducto"];
+                $tempDetalle->cantidad = $detalle["cantidad"];
+                $tempDetalle->precio = $detalle["precio"];
+                
+                if($tempDetalle->cantidad!=0){
+                    $tempDetalle->save();
+                }
+            }else{
+                $tempDetalle = DetallePedido::find($detalle['idDetalle']);
+                if($detalle["cantidad"]==0){
+                    $tempDetalle->activo = 0;
+                    $tempDetalle->eliminado = 1;
+                }else if($detalle["cantidad"]!=$tempDetalle->cantidad){
+                    $tempDetalle->activo = 1;
+                    $tempDetalle->eliminado = 0;
+                }
+                $tempDetalle->cantidad = $detalle["cantidad"];
+                $tempDetalle->update();
             }
         }
         return redirect('pedidos');
@@ -140,7 +155,9 @@ class PedidoController extends Controller
      */
     public function destroy(Pedido $pedido)
     {
-        $pedido->delete();
+        $pedido->activo=0;
+        $pedido->eliminado=1;
+        $pedido->update();
         return redirect()-route('pedidos.index');
     }
 }

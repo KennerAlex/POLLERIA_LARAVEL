@@ -52,19 +52,22 @@
                                                         </button>
                                                         <div class="d-none detail-capsule">
                                                             @foreach ($item->detalle as $detalle)
-                                                                <div>
+                                                                @if ($detalle->eliminado == 0 && $detalle->cantidad > 0)
                                                                     <div>
-                                                                        <h4>{{ $detalle->plato->nombre }}</h4>
+                                                                        <div>
+                                                                            <h4>( {{ $detalle->cantidad }} )
+                                                                                {{ $detalle->plato->nombre }}</h4>
+                                                                        </div>
+                                                                        <div>
+                                                                            <small>{{ $detalle->plato->descripcion }}</small>
+                                                                        </div>
+                                                                        <div>
+                                                                            <h6>S/{{ $detalle->precio }} x
+                                                                                {{ $detalle->cantidad }} =
+                                                                                S/{{ $detalle->precio }}
+                                                                        </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <small>{{ $detalle->plato->descripcion }}</small>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6>{{ $detalle->precio }} x
-                                                                            {{ $detalle->cantidad }} =
-                                                                            {{ $detalle->precio * $detalle->cantidad }} *-9
-                                                                    </div>
-                                                                </div>
+                                                                @endif
                                                             @endforeach
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
