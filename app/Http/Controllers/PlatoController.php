@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use \App\Models\Plato;
 use \App\Models\TipoPlato;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PlatoController extends Controller
 {
