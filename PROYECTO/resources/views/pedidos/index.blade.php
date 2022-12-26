@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 @section('content')
-    <div class="card h-100">
+    <div class="card h-100 m-0">
         <div class="card-header pt-2 d-flex " style="justify-content: space-between">
             <div class="row w-100">
                 <div class=" col-10 card-title">
@@ -19,7 +19,7 @@
 
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap h-100" style="overflow-y: auto">
+                            <table class="table table-hover text-nowrap" style="overflow-y: auto">
                                 <thead>
                                     <tr>
                                         <th>N°</th>
@@ -29,6 +29,7 @@
                                         <th>Telefono</th>
                                         <th>Direccion</th>
                                         <th>Costo</th>
+                                        <th>fecha</th>
                                         <th class="text-center">Operaciones</th>
                                     </tr>
                                 </thead>
@@ -42,6 +43,7 @@
                                             <td>{{ $item->celular }}</td>
                                             <td>{{ $item->direccion }}</td>
                                             <td>S/.{{ $item->monto }}</td>
+                                            <td>{{ (explode(' ',$item->created_at))[0]}}</td>
                                             <td>
                                                 <div class="d-flex" style="gap: 12px; justify-content:center">
                                                     <div>
@@ -51,9 +53,21 @@
                                                             <i class="fas fa-list"></i> Ver</a>
                                                         </button>
                                                         <div class="d-none detail-capsule">
-                                                            @foreach ($item->detalle as $detalle)
+                                                            <div style="display: grid; grid-template-columns:auto 1fr">
+                                                                <div>
+                                                                    <h4>Trabajador: </h4>
+                                                                </div>
+                                                                <div style="white-space:normal">
+                                                                    <h4>
+                                                                        {{ $item->usuario->trabajador ->nombre }} {{ $item->usuario->trabajador->apellidoPaterno }}  {{ $item->usuario->trabajador->apellidoMaterno }}
+                                                                    </h4>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div>
+                                                                @foreach ($item->detalle as $detalle)
                                                                 @if ($detalle->eliminado == 0 && $detalle->cantidad > 0)
-                                                                    <div>
+                                                                    <div class="card p-2">
                                                                         <div>
                                                                             <h4>( {{ $detalle->cantidad }} )
                                                                                 {{ $detalle->plato->nombre }}</h4>
@@ -69,6 +83,8 @@
                                                                     </div>
                                                                 @endif
                                                             @endforeach
+                                                            </div>
+                                                            
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Regresar</button>

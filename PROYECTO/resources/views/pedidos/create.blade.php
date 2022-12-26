@@ -12,43 +12,65 @@
                 <div class="row h-100">
                     <div class="col-7 border h-100" style="border-radius: 5px">
                         <div class="row h-100">
-                            <div class="col-12 py-3 px-2 h-100"
-                                style="display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(auto-fill,170px); gap: 12px; overflow-y: auto"
-                                style="">
-                                @foreach ($platos as $item)
-                                    <div class="card w-auto h-100 m-0">
-                                        {{--  <img src="{{ $item->img }}" class="card-img-top imagenes" alt="...">  --}}
-                                        <div class="card-body h-100 d-flex flex-column producto"
-                                            style="justify-content:space-between">
+                            @if (sizeOf($platos) == 0)
+                                <div class="w-100 d-flex" style="justify-content:center">
+                                    <div style="display: flex; justify-content:center; flex-direction:column">
+                                        <p>Para registrar los platos del menu, click aqui</p>
+                                        <a class="btn btn-primary" href="{{ route('platos.index') }}">Configurar Menu del Dia</a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-12 py-3 px-2 h-100"
+                                    style="display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(auto-fill,170px); gap: 12px; overflow-y: auto"
+                                    style="">
 
-                                            <h4 class="card-title"><b>{{ $item->nombre }}</b></h4>
-                                            <small class="card-text">{{ $item->descripcion }}</small>
-                                            <div class="py-1">
-                                                <p class="card-text text-center ">S/{{ $item->precio }}</p>
-                                            </div>
-                                            <div class="row" style="font-size: 20px">
-                                                <div class="col-12" style="display:flex; justify-content:center;">
-                                                    <div data-sign="-1"
-                                                        class="bg-danger px-3 amount-controller amount.controller-minus"
-                                                        style="flex-shrink: 1; font-size: 1.4em; cursor: pointer; user-select: none;"> - </div>
-                                                    <div class="bg-secondary text-center d-flex"
-                                                        style="flex-grow: 1; align-items:center; justify-content:center">
-                                                        <span class="amount-counter m-auto" data-max="{{ $item->stockDiario }}" data-idProducto="{{ $item->id }}" data-precio={{ $item->precio }} style="user-select: none;">0</span>
-                                                    </div>
-                                                    <div data-sign="1"
-                                                        class="bg-success px-3 amount-controller amount-controller-plus"
-                                                        style="flex-shrink: 1; font-size: 1.4em; cursor: pointer ; user-select: none;">
-                                                        +
+                                    @foreach ($platos as $item)
+                                        <div class="card w-auto h-100 m-0">
+                                            {{--  <img src="{{ $item->img }}" class="card-img-top imagenes" alt="...">  --}}
+                                            <div class="card-body h-100 d-flex flex-column producto"
+                                                style="justify-content:space-between">
+
+                                                <h4 class="card-title"><b>{{ $item->nombre }}</b></h4>
+                                                <small class="card-text">{{ $item->descripcion }}</small>
+                                                <div class="py-1">
+                                                    <p class="card-text text-center ">S/{{ $item->precio }}</p>
+                                                </div>
+                                                <div class="row" style="font-size: 20px">
+                                                    <div class="col-12" style="display:flex; justify-content:center;">
+                                                        @if ($item->stockDiario > 0)
+                                                            <div data-sign="-1"
+                                                                class="bg-danger px-3 amount-controller amount.controller-minus"
+                                                                style="flex-shrink: 1; font-size: 1.4em; cursor: pointer; user-select: none;">
+                                                                - </div>
+                                                            <div class="bg-secondary text-center d-flex"
+                                                                style="flex-grow: 1; align-items:center; justify-content:center">
+                                                                <span class="amount-counter m-auto"
+                                                                    data-max="{{ $item->stockDiario }}"
+                                                                    data-idProducto="{{ $item->id }}"
+                                                                    data-precio={{ $item->precio }}
+                                                                    style="user-select: none;">0</span>
+                                                            </div>
+                                                            <div data-sign="1"
+                                                                class="bg-success px-3 amount-controller amount-controller-plus"
+                                                                style="flex-shrink: 1; font-size: 1.4em; cursor: pointer ; user-select: none;">
+                                                                +
+                                                            </div>
+                                                        @else
+                                                            <div class="bg-danger w-100 h-100 text-center" style="">
+                                                                Agotado
+                                                            </div>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
-                    <div class="col-5 py-2 px-2">
+                    <div class="col-5 py-2 px-2 h-100" style="overflow-y: auto">
                         <div class="row">
                             <div class="col-12">
                                 <h4>Cliente</h4>
@@ -88,16 +110,18 @@
                                     </div>
                                     <div class="col-6">
                                         <label for="">Total:</label>
-                                        <input style="border:none; background:none; text-align: right;" type="number" readonly name="total" id="txtTotal"></input>
+                                        <input style="border:none; background:none; text-align: right;" type="number"
+                                            readonly name="total" id="txtTotal"></input>
                                     </div>
                                 </div>
-                          </div>
+                            </div>
                             <input hidden type="text" id="txtDetalle" name="detalle">
                         </div>
                         <div class="row form-group">
                             <div class="col-12">
-                                <button class="form-control btn btn-primary btn-block" type="submit" class="btn bg-warning"
-                                    type="submit" onclick="enviarInformacion(event)">Registrar</button>
+                                <button class="form-control btn btn-primary btn-block" type="submit"
+                                    class="btn bg-warning" type="submit"
+                                    onclick="enviarInformacion(event)">Registrar</button>
                             </div>
                         </div>
                     </div>
@@ -109,7 +133,6 @@
 @section('script')
     <script type="module" src="/../../js/amountController.js"></script>
     <script>
-
         class AmountController {
             static init(selector = null) {
                 const context = selector || document;
@@ -124,38 +147,40 @@
                         console.log(amountCounter, amountCounter.dataset)
                         const maxValue = parseInt(amountCounter.dataset.max)
                         let newValue = parseInt(amountCounter.innerText) + operation
-                        if(newValue>=0 && newValue<=maxValue){
-                          amountCounter.innerText = newValue;
-                          const txtTotal = document.getElementById("txtTotal")
-                          let currValue = parseFloat(txtTotal.value || 0)
-                          console.log(txtTotal,currValue);
-                          txtTotal.value = currValue  + (amountCounter.dataset.precio * operation);
+                        if (newValue >= 0 && newValue <= maxValue) {
+                            amountCounter.innerText = newValue;
+                            const txtTotal = document.getElementById("txtTotal")
+                            let currValue = parseFloat(txtTotal.value || 0)
+                            console.log(txtTotal, currValue);
+                            txtTotal.value = currValue + (amountCounter.dataset.precio * operation);
+                        } else if (operation == 1) {
+                            alert('Valor maximo alcanzado')
                         }
                     })
                 }
             }
         }
 
-        function enviarInformacion(ev){
-          ev.preventDefault();
-          const productos = document.querySelectorAll('.amount-counter');
-          const data = []
-          let totalSum = 0;
-          for(let producto of productos){
-            
-            let tempData = {
-              idProducto : producto.dataset.idproducto,
-              cantidad : parseInt(producto.innerText),
-              precio : parseFloat(producto.dataset.precio),
+        function enviarInformacion(ev) {
+            ev.preventDefault();
+            const productos = document.querySelectorAll('.amount-counter');
+            const data = []
+            let totalSum = 0;
+            for (let producto of productos) {
+
+                let tempData = {
+                    idProducto: producto.dataset.idproducto,
+                    cantidad: parseInt(producto.innerText),
+                    precio: parseFloat(producto.dataset.precio),
+                }
+                totalSum += tempData.cantidad * tempData.precio;
+                data.push(tempData)
             }
-            totalSum+= tempData.cantidad*tempData.precio;
-            data.push(tempData)
-          }
-          document.getElementById("txtDetalle").value=JSON.stringify(data);
-          document.getElementById("formPedido").submit()
-          document.getElementById("txtTotal").value = totalSum;
-          document.getElementById
-          console.log(data);
+            document.getElementById("txtDetalle").value = JSON.stringify(data);
+            document.getElementById("formPedido").submit()
+            document.getElementById("txtTotal").value = totalSum;
+            document.getElementById
+            console.log(data);
         }
         window.onload = () => {
             console.log('domloaded')
