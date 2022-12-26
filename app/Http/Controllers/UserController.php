@@ -54,7 +54,7 @@ class UserController extends Controller
                                 FROM users u 
                                 INNER JOIN tipousuario tu ON tu.id = u.idtipousuario 
                                 INNER JOIN trabajadores t ON t.id = u.idtrabajador
-                                WHERE u.activo = true and u.eliminado = true');
+                                WHERE u.activo = 1 and u.eliminado = 0');
         $tipos = DB ::select('SELECT * FROM tipousuario WHERE activo = 1 and eliminado = 0');
         $trabajadores = DB ::select('SELECT * FROM trabajadores WHERE activo = 1 and eliminado = 0');
         
