@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TipoPlato;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TipoPlatoController extends Controller
 {
@@ -15,6 +16,8 @@ class TipoPlatoController extends Controller
     public function index()
     {
         //
+        $tipos = DB ::select('SELECT * FROM tipo_platos WHERE activo = 1 and eliminado = 0');
+        return view('TipoPlato.index',compact('tipos'));
     }
 
     /**
@@ -25,6 +28,7 @@ class TipoPlatoController extends Controller
     public function create()
     {
         //
+        return view('TipoPlato.create');
     }
 
     /**
@@ -36,6 +40,12 @@ class TipoPlatoController extends Controller
     public function store(Request $request)
     {
         //
+        $tipoPlato = new tipoPlato();
+        // $tipoPlato ->nombre = $request->nombre;
+        $tipoPlato->descripcion=$request->descripcion;
+        $tipoPlato->activo = $request->estado;
+        $tipoPlato->save();
+        return redirect()->route('tipoplato.index');
     }
 
     /**
@@ -55,9 +65,11 @@ class TipoPlatoController extends Controller
      * @param  \App\Models\TipoPlato  $tipoPlato
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipoPlato $tipoPlato)
+    public function edit($id)
     {
         //
+        $tipoplato=tipoPlato::find($id);
+        return view('TipoPlato.edit',compact('tipoplato'));
     }
 
     /**
@@ -67,9 +79,15 @@ class TipoPlatoController extends Controller
      * @param  \App\Models\TipoPlato  $tipoPlato
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipoPlato $tipoPlato)
+    public function update(Request $request,$tipoplato)
     {
         //
+        $tipoPlato = tipoPlato::find($tipoplato);
+        // $tipoPlato ->nombre = $request->nombre;
+        $tipoPlato ->descripcion = $request->descripcion;
+        $tipoPlato->activo = $request->activo;
+        $tipoPlato->save();
+        return redirect()->route('tipoplato.index');
     }
 
     /**
@@ -78,8 +96,13 @@ class TipoPlatoController extends Controller
      * @param  \App\Models\TipoPlato  $tipoPlato
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoPlato $tipoPlato)
+    public function destroy($tipoplato)
     {
         //
+        $tipoPlato = tipoPlato::find($tipoplato);
+        $tipoPlato->activo = 0;
+        $tipoPlato->eliminado = 1;
+        $tipoPlato->save();
+        return back()->with('Borrado', 'El plato se borró correctamente');
     }
 }

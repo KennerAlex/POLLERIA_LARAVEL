@@ -53,6 +53,37 @@ class DatabaseSeeder extends Seeder
           ],
         
         ]);
+         //TRABAJADORES
+         DB::table('trabajadores')->insert([
+          [
+          'dni' => '70381123',
+          'nombre'=>'Kenner Alexander',
+          'apellidoPaterno'=>'Rojas',
+          'apellidoMaterno'=>'Ahumada',
+          'sexo'=>'M',
+          'direccion'=>'Los Olivos 318-La Esperanza',
+          'telefono'=>'1574141',
+          'celular'=>'948773793',
+          'email' => 'kframi@example.org',
+          'urlImagen'=>'',
+          'activo' => 1,
+          'eliminado' => 0,
+          ],
+          [
+            'dni' => '89415212',
+            'nombre'=>'Evellyn',
+            'apellidoPaterno'=>'Guevara',
+            'apellidoMaterno'=>'Vega',
+            'sexo'=>'F',
+            'direccion'=>'Los Olivos 318-La Esperanza',
+            'telefono'=>'1574141',
+            'celular'=>'941715963',
+            'email' => 'kframi@example.org',
+            'urlImagen'=>'',
+            'activo' => 1,
+            'eliminado' => 0,
+          ],
+      ]);
 
         //USERS
         DB::table('users')->insert([
@@ -65,6 +96,7 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2021-08-14 19:15:38',
             'updated_at' => '2021-08-14 19:15:38',
             'idtipousuario' => '1',
+            'idtrabajador'=>2,
             'activo' => 1,
             'eliminado' => 0,
             ],
@@ -77,6 +109,7 @@ class DatabaseSeeder extends Seeder
             'created_at' => '2021-08-14 19:15:38',
             'updated_at' => '2021-08-14 19:15:38',
             'idtipousuario' => '2',
+            'idtrabajador'=>1,
             'activo' => 1,
             'eliminado' => 0,
             ],

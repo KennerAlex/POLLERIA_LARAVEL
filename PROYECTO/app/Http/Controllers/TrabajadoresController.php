@@ -47,8 +47,10 @@ class TrabajadoresController extends Controller
         $trabajador->apellidoMaterno=$request->apellidoMaterno;
         $trabajador->sexo=$request->sexo;
         $trabajador->direccion=$request->direccion;
+        $trabajador->dni=$request->dni;
         $trabajador->telefono=$request->telefono;
         $trabajador->celular=$request->celular;
+        $trabajador->urlImagen = $request->imagenUrl;
         $trabajador->email=$request->email;
         $trabajador->activo = $request->estado;
         $trabajador->save();
@@ -95,7 +97,9 @@ class TrabajadoresController extends Controller
         $trabajador->apellidoMaterno=$request->apellidoMaterno;
         $trabajador->sexo=$request->sexo;
         $trabajador->direccion=$request->direccion;
+        $trabajador->dni=$request->dni;
         $trabajador->telefono=$request->telefono;
+        $trabajador->urlImagen = $request->imagenUrl;
         $trabajador->celular=$request->celular;
         $trabajador->email=$request->email;
         $trabajador->activo = $request->estado;

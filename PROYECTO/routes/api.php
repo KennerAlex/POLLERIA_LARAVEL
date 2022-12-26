@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::resource('menu', MenuApiController::class);
-Route::get('menu/buscar/{idMenu}',[MenuApiController::class,'search'])->name('buscar');
+// Route::resource('menu', MenuApiController::class);
+// Route::get('menu/buscar/{idMenu}',[MenuApiController::class,'search'])->name('buscar');

@@ -24,14 +24,14 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
-<div class="wrapper">
+<div class="image.png">
 
   <!-- Navbar -->
    <nav class="main-header ribbon navbar navbar-expand ">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link bg-warning" data-widget="pushmenu" href="#" role="button" ><i class="fas fa-bars"></i></a>
+        <a class="nav-link ribbon" style="color: white" data-widget="pushmenu" href="#" role="button" ><i class="fas fa-bars"></i></a>
       </li>
       {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index3.html" class="nav-link">Home</a>
@@ -103,7 +103,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/polloBrasa" class="nav-link">
+                <a href="/usuarios" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Usuarios</p>
                 </a>
@@ -157,34 +157,12 @@
 
        <!-- Platos-->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{route('platos.index')}}" class="nav-link active">
               <i class="nav-icon fas fa-utensils"></i>
               <p>
                 Platos
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/polloBrasa" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pollo a la Brasa</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/especiales" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Platos Especiales</p>
-                </a>
-              </li>
-            
-              <li class="nav-item">
-                <a href="/bebidas" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bebidas</p>
-                </a>
-              </li>
-            </ul>
           </li>
 
           <!-- REGISTROS Y MANTENEDIRES-->
@@ -235,10 +213,10 @@
 
 
             <!-- Logout-->
-            <li class="nav-item">
+            <li class="nav-item " style="padding-top: 20px">
               <form action="/logout" method="post" style="background: yellow" >
                 @csrf
-                <a class="nav-link active " onclick="this.closest('form').submit()">
+                <a class="nav-link  bg-danger" onclick="this.closest('form').submit()">
                   <i class="fas fa-sign-out-alt"></i>
                   <p>
                    Cerrar Sesión

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plato;
+use App\Models\TipoPlato;
 use Illuminate\Http\Request;
 
 class PlatoController extends Controller
@@ -14,7 +15,9 @@ class PlatoController extends Controller
      */
     public function index()
     {
-        Plato::all();
+        $platos = Plato::where('eliminado',0)->get();
+        $tiposPlato = TipoPlato::where('eliminado',0)->get();
+        return view('platos.index',compact('platos','tiposPlato'));
     }
 
     /**
@@ -35,7 +38,14 @@ class PlatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $plato = new Plato();
+        $plato->nombre = $request->nombrePlato;
+        $plato->descripcion = $request->descripcionPlato;
+        $plato->tipo_plato_id = $request->tipoPlato;
+        $plato->precio = $request->precioPlato;
+        // dd($plato->tipo_plato_id);
+        $plato->save();
+        return redirect()->route('platos.index');
     }
 
     /**
@@ -68,8 +78,25 @@ class PlatoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Plato $plato)
-    {
-        //
+    {        
+        $plato->nombre = $request->nombrePlato;
+        $plato->descripcion = $request->descripcionPlato;
+        $plato->precio = $request->precioPlato;
+        $plato->update();
+        return redirect()->route('platos.index');
+    }
+
+    public function setMenu(Request $request){
+        $arrIdPlato = $request->idPlato;
+        $arrActivo = $request->activo;
+        $arrStock = $request->stock;
+        for ($i=0; $i < sizeof($request->idPlato); $i++) { 
+            $plato = Plato::find($arrIdPlato[$i]);
+            $plato->activo = $arrActivo[$i];
+            $plato->stockDiario = $arrStock[$i];
+            $plato->update();
+        }
+        return redirect()->route('platos.index');
     }
 
     /**
@@ -80,6 +107,9 @@ class PlatoController extends Controller
      */
     public function destroy(Plato $plato)
     {
-        //
+        $plato->activo=0;
+        $plato->eliminado = 1;
+        $plato->update();
+        return redirect()->route('platos.index');
     }
 }

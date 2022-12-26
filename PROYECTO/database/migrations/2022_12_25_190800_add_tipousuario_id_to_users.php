@@ -17,6 +17,9 @@ class AddTipousuarioIdToUsers extends Migration
             //
             $table->unsignedInteger('idtipousuario');
             $table->foreign('idtipousuario')->references('id')->on('tipousuario');
+
+            $table->unsignedInteger('idtrabajador');
+            $table->foreign('idtrabajador')->references('id')->on('trabajadores');
         });
     }
 
