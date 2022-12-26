@@ -11,6 +11,7 @@ use \Illuminate\Routing\Redirector;
 use \Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Hash;
 use \Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\App;
 
 class UserController extends Controller
 {
