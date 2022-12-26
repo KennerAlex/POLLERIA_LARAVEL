@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetallePedido;
-use App\Models\Pedido;
-use App\Models\Plato;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Svg\Tag\Rect;
+use \App\Models\DetallePedido;
+use \App\Models\Pedido;
+use \App\Models\Plato;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\DB;
+use \Svg\Tag\Rect;
+use \Illuminate\Support\Facades\App;
 
 class DashboardController extends Controller
 {

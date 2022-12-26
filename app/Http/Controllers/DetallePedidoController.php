@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetallePedido;
-use Illuminate\Http\Request;
+use \App\Models\DetallePedido;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\App;
 
 class DetallePedidoController extends Controller
 {

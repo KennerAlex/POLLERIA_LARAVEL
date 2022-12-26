@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoPlato;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use \App\Models\TipoPlato;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\DB;
+use \Illuminate\Support\Facades\App;
 
 class TipoPlatoController extends Controller
 {

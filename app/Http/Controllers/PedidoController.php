@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\App;
+use \Illuminate\Support\Facades\App;
 
-use App\Models\DetallePedido;
-use App\Models\Pedido;
-use App\Models\Plato;
-use Barryvdh\DomPDF\Facade as PDF;
-use Illuminate\Http\Request;
+use \App\Models\DetallePedido;
+use \App\Models\Pedido;
+use \App\Models\Plato;
+use \Barryvdh\DomPDF\Facade as PDF;
+use \Illuminate\Http\Request;
 // use PDF;
-use Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
 {
