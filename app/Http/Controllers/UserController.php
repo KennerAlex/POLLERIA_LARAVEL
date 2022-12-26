@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipousuario;
-use App\Models\Trabajador;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+use \App\Models\tipousuario;
+use \App\Models\Trabajador;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\Auth;
+use \App\Models\User;
+use \Illuminate\Routing\Redirector;
+use \Illuminate\Support\Facades\DB;
+use \Illuminate\Support\Facades\Hash;
+use \Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
