@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <title>DashBoard:Polleria </title>
   <link rel="shortcut icon" href="adminlte/dist/img/logo_Polleria.png">
 

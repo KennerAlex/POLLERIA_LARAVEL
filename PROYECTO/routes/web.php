@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\TipoPlatoController;
 use App\Http\Controllers\tipoUsuarioController;
@@ -41,7 +42,9 @@ Route::resource('pedidos', PedidoController::class);
 Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
 Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');
 Route::get('pedidos/pdf/{pedido}',[PedidoController::class,'createPDF'] )->name('pedidos.pdf');
-Route::get('/estadisticas',[PedidoController::class,'estadisticas'])->name('estadisticas');
+
+Route::get('/estadisticas',[DashboardController::class,'index'])->name('estadisticas');
+Route::post('/estadisticas/vendidos',[DashboardController::class,'vendidos'])->name('vendidos');
 
 Route::resource('tipoplato', TipoPlatoController::class);
 Route::resource('trabajadores',TrabajadoresController::class);
