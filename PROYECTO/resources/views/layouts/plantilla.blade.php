@@ -120,14 +120,7 @@
           </li>
           @endif
         
-               <li class="nav-item">
-                <a href="/menu" class="nav-link active">
-                  <i class="nav-icon fas fa-list-ol"></i>
-                  <p>
-                    Menú
-                  </p>
-                </a>
-              </li>
+            
 
               <!--Registrar Pedidos-->
               <li class="nav-item">
