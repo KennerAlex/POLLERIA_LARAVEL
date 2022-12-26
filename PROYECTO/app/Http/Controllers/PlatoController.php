@@ -87,7 +87,6 @@ class PlatoController extends Controller
     }
 
     public function setMenu(Request $request){
-        // dd($request->request);
         $arrIdPlato = $request->idPlato;
         $arrActivo = $request->activo;
         $arrStock = $request->stock;

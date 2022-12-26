@@ -131,7 +131,6 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form action=" {{ route('setMenu') }} " class="form" method="POST">
-                    @method('PUT')
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Menu del dia</h5>
