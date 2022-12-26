@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plato;
-use App\Models\TipoPlato;
-use Illuminate\Http\Request;
+use \App\Models\Plato;
+use \App\Models\TipoPlato;
+use \Illuminate\Http\Request;
 
 class PlatoController extends Controller
 {
