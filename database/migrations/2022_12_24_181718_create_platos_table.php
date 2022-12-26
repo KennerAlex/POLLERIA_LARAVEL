@@ -21,7 +21,7 @@ class CreatePlatosTable extends Migration
             $table->foreignId('tipo_plato_id');
             $table->boolean('activo')->default(true);
             $table->boolean('eliminado')->default(false);
-            $table->integer('stockDiario');
+            $table->integer('stockDiario')->default(0);
             $table->text('url_imagen')->nullable();
             $table->timestamps();
             $table->foreign('tipo_plato_id')->references('id')->on('tipo_platos')->cascadeOnUpdate()->cascadeOnDelete();
