@@ -11,10 +11,10 @@
                       <div class="card-body">
                         <form action="{{ route('tipoplato.store')}}" method="post" enctype="multipart/form-data">
                           @csrf
-                          <div class="form-group">
+                          {{-- <div class="form-group">
                             <label for="titulo">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
-                          </div>
+                          </div> --}}
         
                           <div class="form-group">
                             <label for="descripcion">Descripción</label>

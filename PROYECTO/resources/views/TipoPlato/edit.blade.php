@@ -12,10 +12,10 @@
                         <form action="{{ route('tipoplato.update',['tipoplato'=>$tipoplato->id])}}" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="PUT">
                                 @csrf
-                          <div class="form-group">
+                          {{-- <div class="form-group">
                             <label for="titulo">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $tipoplato->nombre }}"  required>
-                          </div>
+                          </div> --}}
         
                           <div class="form-group">
                             <label for="descripcion">Descripción</label>

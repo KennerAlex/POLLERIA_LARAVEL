@@ -30,6 +30,9 @@ Route::view('bienvenido','bienvenido')->middleware('auth');
 // Route::post('/identificacion',[UserController::class,'verificalogin'])->name('identificacion');
 Route::post('identificacion',[UserController::class,'verificalogin'])->name('identificacion');
 Route::post('/logout',[UserController::class,'salir'])->name('logout');
+Route::get('/usuarios',[UserController::class,'index'])->name('usuarios');
+Route::post('usuarios',[UserController::class,'store'])->name('usuarios.store');
+Route::delete('usuarios/{id}',[UserController::class,'destroy'])->name('usuarios.destroy');
 
 Route::resource('menu', PlatoController::class);
 Route::resource('pedidos', PedidoController::class);
