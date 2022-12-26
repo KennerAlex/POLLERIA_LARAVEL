@@ -13,27 +13,33 @@
     <h3>Apellidos Cliente:</h3>
     <p>{{$pedido->apellidosCliente}}</p>
     <h3>Correo: </h3><p>{{$pedido->correo}}</p>
-    <h3>Telefono: </h3><p>{{$pedido->telefono}}</p>
-    <h3>Dirección: </h3><p>{{$pedido->direccion}}</p><br><br>
+    <h3>Telefono: </h3><p>{{$pedido->celular}}</p>
+    <h3>Dirección: </h3><p>{{$pedido->direccion}}</p>
+
     <table class="table table-hover text-nowrap">
         <thead>
           <tr>
-            <th>NumeroPedido</th>
-            <th>idMenu</th>
+            <th>Descripcion</th>
             <th>Cantidad</th>
-            <th>Descripción</th>
             <th>Costo</th>        
           </tr>
         </thead>
         <tbody>   
+          @foreach ($pedido->detalle as $detalle)
+            
+          @endforeach
            <tr>
-            <td>{{$pedido->id}}</td>
-            <td>{{$pedido->idmenu}}</td>
-            <td>{{$pedido->cantidad}}</td>
-            <td>{{$pedido->descripcion}}</td>
-            <td>{{$pedido->costo}}</td>
+            <td>{{$detalle->plato->nombre}}</td>
+            <td>{{$detalle->cantidad}}</td>
+            <td>{{$detalle->precio}}</td>
             </tr>                      
         </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>S/.{{ $pedido->monto }}</td>
+          </tr>
+        </tfoot>
       </table>
 </body>
 </html>

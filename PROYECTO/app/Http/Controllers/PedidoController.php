@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetallePedido;
 use App\Models\Pedido;
 use App\Models\Plato;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -98,6 +99,12 @@ class PedidoController extends Controller
             }
         }
         return view('pedidos.edit',compact('platos','pedido'));
+    }
+
+    public function createPDF(Pedido $pedido){
+        $pdf = PDF::loadiew('pedidos.pdf_view',compact('pedido'));
+        $nombreArchivo = "V-".str_repeat('0',5 - strlen(''.$pedido->id) ).$pedido->id.'_'.now()->format('d-m-Y').'.pdf';
+        return $pdf->download($nombreArchivo);
     }
 
     /**

@@ -80,7 +80,7 @@
                                                     <div>
                                                         <form action="">
                                                             <a class="btn btn-success btn-sm border-dark"
-                                                                href="{{ route('pdf', $item->id) }}">
+                                                                href="{{ route('pedidos.pdf', $item) }}" target="_blank">
                                                                 <i class="fas fa-clipboard-list"></i> Generar Boleta</a>
                                                         </form>
                                                     </div>

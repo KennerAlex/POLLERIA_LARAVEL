@@ -40,7 +40,7 @@ Route::post('platos/menu', [PlatoController::class,'setMenu'])->name('setMenu');
 Route::resource('pedidos', PedidoController::class);
 Route::get('registro/',[PedidoController::class,'create'] )->name('registrar');
 Route::get('registro/{pedido}',[PedidoController::class,'edit'] )->name('actualizar');
-Route::get('pdf/{id}',[PedidoController::class,'viewpdf'] )->name('pdf');
+Route::get('pedidos/pdf/{pedido}',[PedidoController::class,'createPDF'] )->name('pedidos.pdf');
 Route::get('/estadisticas',[PedidoController::class,'estadisticas'])->name('estadisticas');
 
 Route::resource('tipoplato', TipoPlatoController::class);
