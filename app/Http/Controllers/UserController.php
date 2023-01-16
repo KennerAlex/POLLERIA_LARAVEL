@@ -28,9 +28,11 @@ class UserController extends Controller
             'username.required'=>'Ingrese el usuario',
             'password'=>'Ingrese la contraseña'
         ]);
+        // dd($request);
             if(Auth::attempt($credentials)){
                 $request->session()->regenerate();
                 $rol=tipoUsuario::find(Auth::user()->idtipousuario);
+                // Auth::login(Auth::user())
                 session(['rol' => $rol]);
                 return redirect()->intended('bienvenido')->with('status','Sesión correcta');
             }

@@ -8,9 +8,17 @@ use \App\Models\DetallePedido;
 use \App\Models\Pedido;
 use \App\Models\Plato;
 use \Barryvdh\DomPDF\Facade as PDF;
+use Exception;
 use \Illuminate\Http\Request;
 // use PDF;
 use \Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
+
+// sweet alert
+// use RealRashid\SweetAlert\Facades\Alert;
+Use Alert;
 
 class PedidoController extends Controller
 {
@@ -19,10 +27,26 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pedidos = Pedido::where('eliminado',0)->get();
-        return view('pedidos.index',compact('pedidos'));
+        $fechaInicial = null;
+        $fechaFinal = null;
+        if($request->exists('fechaInicial')&&$request->exists('fechaFinal')){
+            $fechaInicial = $request->fechaInicial;
+            $fechaFinal = $request->fechaFinal;
+        }
+        if($fechaInicial==null && $fechaFinal == null){
+            $pedidos = Pedido::where('eliminado',0)->get();
+        }else{
+            if($fechaInicial!=null && $fechaFinal == null){
+                $pedidos = Pedido::where('eliminado',0)->where('created_at','>',$fechaInicial)->get();
+            }else if($fechaInicial==null && $fechaFinal != null){
+                $pedidos = Pedido::where('eliminado',0)->where('created_at','<',$fechaFinal)->get();
+            }else{
+                $pedidos = Pedido::where('eliminado',0)->where('created_at','>',$fechaInicial)->where('created_at','<',$fechaFinal)->get();
+            }
+        }
+        return view('pedidos.index',compact('pedidos'))->with('fechaInicial',$fechaInicial)->with('fechaFinal',$fechaFinal);
     }
 
     /**
@@ -44,32 +68,53 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        $pedido=new Pedido();
-        $pedido->nombreCliente=$request->nombre;
-        $pedido->apellidosCliente=$request->apellidos;
-        $pedido->correo=$request->email;
-        $pedido->celular=$request->telefono;
-        $pedido->direccion=$request->direccion;
-        $pedido->notas=$request->notas;
-        $pedido->delivery = ($request->delivery=="on")?true:false;
-        $pedido->monto=$request->total;
-        $pedido->user_id = auth()->id();
-        $arrDetalle = json_decode($request->detalle, true);
-        $pedido->save();
-        foreach ($arrDetalle as $detalle) {
-            $tempDetalle = new DetallePedido();
-            $tempDetalle->pedido_id	 = $pedido->id;
-            $tempDetalle->plato_id = $detalle["idProducto"];
-            $tempDetalle->cantidad = $detalle["cantidad"];
-            $tempDetalle->precio = $detalle["precio"];
-            $plato = Plato::find($tempDetalle->plato_id);
-            $plato->stockDiario = $plato->stockDiario - $tempDetalle->cantidad;
-            if($tempDetalle->cantidad!=0){
-                $tempDetalle->save();
+        $valid=true;
+        $message = 'Operacion Existosa';
+        DB::beginTransaction();
+        try{
+            $pedido=new Pedido();
+            $pedido->nombreCliente=$request->nombre;
+            $pedido->apellidosCliente=$request->apellidos;
+            $pedido->correo=$request->email;
+            $pedido->celular=$request->telefono;
+            $pedido->direccion=$request->direccion;
+            $pedido->notas=$request->notas;
+            $pedido->delivery = ($request->delivery=="on")?true:false;
+            $pedido->monto=$request->total;
+            $pedido->user_id = auth()->id();
+            $arrDetalle = json_decode($request->detalle, true);
+            $pedido->save();
+            foreach ($arrDetalle as $detalle) {
+                $tempDetalle = new DetallePedido();
+                $tempDetalle->pedido_id	 = $pedido->id;
+                $tempDetalle->plato_id = $detalle["idProducto"];
+                $tempDetalle->cantidad = $detalle["cantidad"];
+                $tempDetalle->precio = $detalle["precio"];
+                $plato = Plato::find($tempDetalle->plato_id);
+                $plato->stockDiario = $plato->stockDiario - $tempDetalle->cantidad;
+                if($plato->stockDiario>=0){
+                    if($tempDetalle->cantidad!=0){
+                        $tempDetalle->save();
+                    }
+                    $plato->update();
+                }else{
+                    $valid = false;
+                    $message = 'No hay stock de '.$plato->nombre;
+                }
             }
-            $plato->update();
+            if($valid){
+                Alert::success('Se registro el pedido');
+                DB::commit();
+            }else{
+                Alert::success('Ocurrio un error',$message);
+                DB::rollBack();
+            }
+        }catch (Exception $e){
+            $message = $e->getMessage();
+            Alert::success('Ocurrio un error',$message);
+            DB::rollBack();
         }
-        return redirect('pedidos');
+        return redirect('pedidos')->with($message);
     }
 
     /**

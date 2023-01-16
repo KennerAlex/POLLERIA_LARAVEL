@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \Illuminate\Support\Facades\App;
 use App\Models\Vendedor;
 use Illuminate\Http\Request;
 

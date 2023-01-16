@@ -165,7 +165,7 @@
                                                 @if ($item->activo) checked @endif /> Activo
                                         </td>
                                         <td>
-                                            <input class="form-control" style="width: 70px; text-align:center" name="stock[]" type="number" value="{{ $item->stockDiario }}">
+                                            <input class="form-control" style="width: 70px; text-align:center" name="stock[]" type="number" min="0" value="{{ $item->stockDiario }}">
                                         </td>
 
                                     </tr>

@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-4 form-group">
                                 <label for="">Telefono</label>
-                                <input name="telefono" id="txtTelefono" class="form-control" type="text" required
+                                <input name="telefono" id="txtTelefono" pattern="[0-9]{9}" title="Registrar un numero de 9 digitos" class="form-control" type="text" required
                                     value="{{ $pedido->celular }}">
                             </div>
                             <div class="col-12 form-group">

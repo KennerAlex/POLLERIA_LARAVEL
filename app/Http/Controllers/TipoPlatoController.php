@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use \Illuminate\Support\Facades\App;
 use \App\Models\TipoPlato;
 use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\DB;
-use \Illuminate\Support\Facades\App;
 
 class TipoPlatoController extends Controller
 {
@@ -69,7 +69,7 @@ class TipoPlatoController extends Controller
     public function edit($id)
     {
         //
-        $tipoplato=tipoPlato::find($id);
+        $tipoplato=TipoPlato::find($id);
         return view('TipoPlato.edit',compact('tipoplato'));
     }
 
@@ -83,7 +83,7 @@ class TipoPlatoController extends Controller
     public function update(Request $request,$tipoplato)
     {
         //
-        $tipoPlato = tipoPlato::find($tipoplato);
+        $tipoPlato = TipoPlato::find($tipoplato);
         // $tipoPlato ->nombre = $request->nombre;
         $tipoPlato ->descripcion = $request->descripcion;
         $tipoPlato->activo = $request->activo;
@@ -100,7 +100,7 @@ class TipoPlatoController extends Controller
     public function destroy($tipoplato)
     {
         //
-        $tipoPlato = tipoPlato::find($tipoplato);
+        $tipoPlato = TipoPlato::find($tipoplato);
         $tipoPlato->activo = 0;
         $tipoPlato->eliminado = 1;
         $tipoPlato->save();

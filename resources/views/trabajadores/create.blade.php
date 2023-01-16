@@ -12,27 +12,6 @@
                         <form action="{{ route('trabajadores.store')}}" method="post" enctype="multipart/form-data">
                           @csrf
                           <div class="row">
-                            <div class="form-group col-6" style="width: 250px; height: 250px;">
-                              <label for="inputFile" class=" requiredField">
-                                  Imagen Preliminar
-                              </label>
-                              <div class="d-flex justify-content-center">
-                                  <div id="loader" class="loader d-none"></div>
-                              </div>
-                              <div class="text-center">
-                                  <img src="" id="img-src" alt="User Image" class="img-fluid" style="width: 250px; height: 250px; border-radius: 50%">
-                              </div>
-                            </div>
-                            <div class="form-group col-6">
-
-                              <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="imagen" name="imagen">
-                                  <input type="text" class="custom-file-input d-none" id="imagenUrl" name="imagenUrl">
-                                  <label class="custom-file-label" for="imagen" >Elija el archivo</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
                             <div class="form-group col-4">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -48,7 +27,7 @@
                           </div>
                           <div class="row">
                             <div class="form-group col-4">
-                                <label for="estatus">Sexo</label>
+                                <label for="sexo">Sexo</label>
                                 <select class="form-control" id="sexo" name="sexo" required>
                                   <option value="">Seleccionar</option>
                                   <option value="M">Masculino</option>
@@ -56,26 +35,26 @@
                                 </select>
                             </div>
                             <div class="form-group col-4">
-                                <label for="telefono">Dirección</label>
+                                <label for="direccion">Dirección</label>
                                 <input type="text" class="form-control" id="direccion" name="direccion" required>
                             </div>
                             <div class="form-group col-4">
-                              <label for="telefono">DNI</label>
-                              <input type="text" class="form-control" id="dni" name="dni" required>
+                              <label for="dni">DNI</label>
+                              <input type="text" pattern="[0-9]{8}" title="Registrar un DNI valido por favor" class="form-control" id="dni" name="dni" required>
                           </div>
                           </div>
                           <div class="row">
                             <div class="form-group col-4">
                                 <label for="celular">Celular</label>
-                                <input type="text" class="form-control" id="celular" name="celular" required>
+                                <input type="text" pattern="[0-9]{9}" title="Registrar un numero de 9 digitos" class="form-control" id="celular" name="celular" required>
                               </div>
                               <div class="form-group col-4">
-                                <label for="celular">Telefono</label>
+                                <label for="telefono">Telefono</label>
                                 <input type="text" class="form-control" id="telefono" name="telefono" required>
                               </div>
                               <div class="form-group col-4">
-                                <label for="celular">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" required>
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
                               </div>
                           </div>
                           <div class="row">

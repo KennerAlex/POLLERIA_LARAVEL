@@ -13,27 +13,6 @@
                             <input type="hidden" name="_method" value="PUT">
                             @csrf
 
-                            <div class="row">
-                              <div class="form-group col-6" style="width: 250px; height: 250px;">
-                                <label for="inputFile" class=" requiredField">
-                                    Imagen Preliminar
-                                </label>
-                                <div class="d-flex justify-content-center">
-                                    <div id="loader" class="loader d-none"></div>
-                                </div>
-                                <div class="text-center">
-                                    <img src="{{ $trabajador->urlImagen }}" id="img-src" alt="User Image" class="img-fluid" style="width: 250px; height: 250px; border-radius: 50%">
-                                </div>
-                              </div>
-                              <div class="form-group col-6">
-  
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="imagen" name="imagen">
-                                    <input type="text" class="custom-file-input d-none" id="imagenUrl" name="imagenUrl">
-                                    <label class="custom-file-label" for="imagen" >Elija el archivo</label>
-                                </div>
-                              </div>
-                            </div>
                           <div class="row">
                             <div class="form-group col-4">
                                 <label for="nombre">Nombre</label>
@@ -63,7 +42,7 @@
                               </div>
                               <div class="form-group col-4">
                                 <label for="telefono">DNI</label>
-                                <input type="text" class="form-control" id="dni" name="dni" value="{{ $trabajador->dni}}" required>
+                                <input type="text" class="form-control" pattern="[0-9]{9}" title="Registrar un numero de 9 digitos" id="dni" name="dni" value="{{ $trabajador->dni}}" required>
                             </div>
 
                           </div>

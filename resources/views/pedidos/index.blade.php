@@ -2,7 +2,7 @@
 @section('content2')
     <div class="card h-100 m-0">
         <div class="card-header pt-2 d-flex " style="justify-content: space-between">
-            <div class="row w-100">
+            <div class="row w-100 ">
                 <div class=" col-10 card-title">
                     <h3 class="m-0">Pedidos</h3>
                 </div>
@@ -12,10 +12,28 @@
                 </div>
             </div>
         </div>
+        <form id="formBusqueda" class="was-validated form mx-3 pt-2" action=" {{ route('pedidos.index') }} " method="GET">
+            <div class="row" >
+                <div class="col-5">
+                    <label class="form-label" for="">Desde: </label>
+                    <input class="form-control form-control-solid" type="date" value="{{ $fechaInicial }}" name="fechaInicial" id="">
+                </div>
+                <div class="col-5">
+                    <label class="form-label" for="">Hasta: </label>
+                    <input class="form-control form-control-solid" type="date" value="{{ $fechaFinal }}" name="fechaFinal" id="">
+                </div>
+                <div class="col-2">
+                    <label for="" class="form-label"> </label>
+                    <button type="submit" class="btn btn-block btn-primary">
+                        BUSCAR
+                    </button>
+                </div>
+            </div>
+        </form>
         <div class="card-body">
             <div class="row h-100">
-                <div class="col-12 h-100">
-                    <div class="card h-100">
+                <div class="col-12 h-100 pb-2">
+                    <div class="card h-auto">
 
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
@@ -34,89 +52,95 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pedidos as $item)
-                                        <tr>
-                                            <td>{{ $item->id }}</td>
-                                            <td>{{ $item->nombreCliente }}</td>
-                                            <td>{{ $item->apellidosCliente }}</td>
-                                            <td>{{ $item->correo }}</td>
-                                            <td>{{ $item->celular }}</td>
-                                            <td>{{ $item->direccion }}</td>
-                                            <td>S/.{{ $item->monto }}</td>
-                                            <td>{{ (explode(' ',$item->created_at))[0]}}</td>
-                                            <td>
-                                                <div class="d-flex" style="gap: 12px; justify-content:center">
-                                                    <div>
-                                                        <button onclick="showDetail(event)" type="button"
-                                                            class="btn btn-primary btn-sm border-dark" data-toggle="modal"
-                                                            data-target="#detailModal">
-                                                            <i class="fas fa-list"></i> Ver</a>
-                                                        </button>
-                                                        <div class="d-none detail-capsule">
-                                                            <div style="display: grid; grid-template-columns:auto 1fr">
-                                                                <div>
-                                                                    <h4>Trabajador: </h4>
+                                    @if (count($pedidos)>0)
+                                        @foreach ($pedidos as $item)
+                                            <tr>
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->nombreCliente }}</td>
+                                                <td>{{ $item->apellidosCliente }}</td>
+                                                <td>{{ $item->correo }}</td>
+                                                <td>{{ $item->celular }}</td>
+                                                <td>{{ $item->direccion }}</td>
+                                                <td>S/.{{ $item->monto }}</td>
+                                                <td>{{ (explode(' ',$item->created_at))[0]}}</td>
+                                                <td>
+                                                    <div class="d-flex" style="gap: 12px; justify-content:center">
+                                                        <div>
+                                                            <button onclick="showDetail(event)" type="button"
+                                                                class="btn btn-primary btn-sm border-dark" data-toggle="modal"
+                                                                data-target="#detailModal">
+                                                                <i class="fas fa-list"></i> Ver</a>
+                                                            </button>
+                                                            <div class="d-none detail-capsule">
+                                                                <div style="display: grid; grid-template-columns:auto 1fr">
+                                                                    <div>
+                                                                        <h4>Trabajador: </h4>
+                                                                    </div>
+                                                                    <div style="white-space:normal">
+                                                                        <h4>
+                                                                            {{ $item->usuario->trabajador ->nombre }} {{ $item->usuario->trabajador->apellidoPaterno }}  {{ $item->usuario->trabajador->apellidoMaterno }}
+                                                                        </h4>
+                                                                    </div>
+                                                                    
                                                                 </div>
-                                                                <div style="white-space:normal">
-                                                                    <h4>
-                                                                        {{ $item->usuario->trabajador ->nombre }} {{ $item->usuario->trabajador->apellidoPaterno }}  {{ $item->usuario->trabajador->apellidoMaterno }}
-                                                                    </h4>
+                                                                <div>
+                                                                    @foreach ($item->detalle as $detalle)
+                                                                    @if ($detalle->eliminado == 0 && $detalle->cantidad > 0)
+                                                                        <div class="card p-2">
+                                                                            <div>
+                                                                                <h4>( {{ $detalle->cantidad }} )
+                                                                                    {{ $detalle->plato->nombre }}</h4>
+                                                                            </div>
+                                                                            <div>
+                                                                                <small>{{ $detalle->plato->descripcion }}</small>
+                                                                            </div>
+                                                                            <div>
+                                                                                <h6>S/{{ $detalle->precio }} x
+                                                                                    {{ $detalle->cantidad }} =
+                                                                                    S/{{ $detalle->precio }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
                                                                 </div>
                                                                 
-                                                            </div>
-                                                            <div>
-                                                                @foreach ($item->detalle as $detalle)
-                                                                @if ($detalle->eliminado == 0 && $detalle->cantidad > 0)
-                                                                    <div class="card p-2">
-                                                                        <div>
-                                                                            <h4>( {{ $detalle->cantidad }} )
-                                                                                {{ $detalle->plato->nombre }}</h4>
-                                                                        </div>
-                                                                        <div>
-                                                                            <small>{{ $detalle->plato->descripcion }}</small>
-                                                                        </div>
-                                                                        <div>
-                                                                            <h6>S/{{ $detalle->precio }} x
-                                                                                {{ $detalle->cantidad }} =
-                                                                                S/{{ $detalle->precio }}
-                                                                        </div>
-                                                                    </div>
-                                                                @endif
-                                                            @endforeach
-                                                            </div>
-                                                            
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Regresar</button>
-                                                                <a href="{{ route('actualizar', $item) }}" type="button"
-                                                                    class="btn btn-primary">Editar</a>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Regresar</button>
+                                                                    <a href="{{ route('actualizar', $item) }}" type="button"
+                                                                        class="btn btn-primary">Editar</a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <form action="">
-                                                            <a class="btn btn-success btn-sm border-dark"
-                                                                href="{{ route('pedidos.pdf', $item) }}" target="_blank">
-                                                                <i class="fas fa-clipboard-list"></i> Generar Boleta</a>
-                                                        </form>
-                                                    </div>
-                                                    <div>
-                                                        <form action="{{ route('pedidos.destroy', $item->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            {{ method_field('DELETE') }}
+                                                        <div>
+                                                            <form action="">
+                                                                <a class="btn btn-success btn-sm border-dark"
+                                                                    href="{{ route('pedidos.pdf', $item) }}" target="_blank">
+                                                                    <i class="fas fa-clipboard-list"></i> Generar Boleta</a>
+                                                            </form>
+                                                        </div>
+                                                        <div>
+                                                            <form action="{{ route('pedidos.destroy', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                {{ method_field('DELETE') }}
 
-                                                            <button type="submit"
-                                                                class="btn btn-danger btn-sm border-dark">
-                                                                <i class="fas fa-trash-alt"></i> Eliminar
-                                                            </button>
-                                                        </form>
-                                                        <br>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger btn-sm border-dark">
+                                                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                                                </button>
+                                                            </form>
+                                                            <br>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="9" class="text-center">No hay datos</td>
                                         </tr>
-                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

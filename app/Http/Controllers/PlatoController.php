@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use \Illuminate\Support\Facades\App;
 use \App\Models\Plato;
 use \App\Models\tipoPlato;
 use \Illuminate\Http\Request;
-use \Illuminate\Support\Facades\App;
 
 class PlatoController extends Controller
 {
@@ -94,7 +94,7 @@ class PlatoController extends Controller
         for ($i=0; $i < sizeof($request->idPlato); $i++) { 
             $plato = Plato::find($arrIdPlato[$i]);
             $plato->activo = $arrActivo[$i];
-            $plato->stockDiario = $arrStock[$i];
+            $plato->stockDiario = ($arrStock[$i]>0)?$arrStock[$i]:0;
             $plato->update();
         }
         return redirect()->route('platos.index');

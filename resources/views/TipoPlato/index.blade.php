@@ -38,10 +38,6 @@
                                       <td><?php echo $tipo->descripcion; ?></td>
                                       <td> <?php if($tipo->activo==1){ echo 'Activo';}else{ echo 'Inactivo';} ?> </td>
                                       <td class="project-actions text-center">
-                                        <a class="btn btn-primary btn-sm" href="#">
-                                          <i class="fas fa-eye"></i>
-                                            Ver
-                                        </a>
                                         <a class="btn btn-warning btn-sm" href="{{ route('tipoplato.edit', $tipo->id) }}">
                                             <i class="fas fa-pencil-alt">
                                             </i>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use \Illuminate\Support\Facades\App;
 use \Illuminate\Http\Request;
 use \App\Models\Trabajador;
 use \Illuminate\Support\Facades\DB;
-use \Illuminate\Support\Facades\App;
 
 class TrabajadoresController extends Controller
 {
