@@ -19,6 +19,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        print "desde";
         return view('estadisticas');
     }
 
@@ -29,8 +30,15 @@ class DashboardController extends Controller
      */
     public function vendidos(Request $request)
     {
-        // $platos = DB ::select('SELECT nombre FROM platos P INNER JOIN detalle_pedidos D ON P.id=D.plato_id order by id ');
-        $platos =DB ::select('SELECT COUNT(*)*DP.cantidad as cantidad,P.nombre  FROM  detalle_pedidos DP INNER JOIN platos P on DP.plato_id=P.id group by plato_id order by cantidad');
+        $desde=$request->desde;
+        $hasta=$request->hasta;
+    
+
+        //  $platos =DB ::select("SELECT COUNT(*)*DP.cantidad as cantidad,P.nombre  FROM  detalle_pedidos DP INNER JOIN platos P on DP.plato_id=P.id    WHERE CAST(DP.updated_at AS DATE) between '".$desde."' AND '".$hasta."' group by plato_id order by cantidad");
+        // echo"<script>console.log(.$platos.)</script>"
+         $platos =DB ::select("CALL `gf_platos_vendidos`('".$desde."','".$hasta."')");
+     
+
         return response(json_encode($platos,200))->header('Content-type',"text/plain");
     }
 
@@ -42,12 +50,17 @@ class DashboardController extends Controller
      */
     public function ingresos(Request $request)
     { 
-        $ingresos =DB ::select("SELECT SUM(monto) as ingresos, case when month(created_at)=1 then 'Enero' when month(created_at)=2 then 'Febrero' when month(created_at)=3 then 'Marzo' when month(created_at)=4 then 'Abril' when month(created_at)=5 then 'Mayo' when month(created_at)=6 then 'Junio' when month(created_at)=7 then 'Julio'when month(created_at)=8 then 'Agosto' when month(created_at)=9 then 'Setiembre' when month(created_at)=10 then 'Octubre' when month(created_at)=11 then 'Noviembre' when month(created_at)=12 then 'Diciembre' end as mes  FROM  pedidos group by mes;");
+        $desde=$request->desde;
+        $hasta=$request->hasta;
+
+        $ingresos =DB ::select("CALL `gf_ingresos`('".$desde."','".$hasta."')");
         return response(json_encode($ingresos,200))->header('Content-type',"text/plain");
     }
     public function delivery(Request $request)
     { 
-        $delivery =DB ::select('SELECT COUNT(*) as cantidad, delivery FROM  pedidos group by delivery order by delivery' );
+        $desde=$request->desde;
+        $hasta=$request->hasta;
+        $delivery =DB ::select("CALL `gf_delivery`('".$desde."','".$hasta."')");
         return response(json_encode($delivery,200))->header('Content-type',"text/plain");
     }
     public function stock(Request $request)
